@@ -27,15 +27,20 @@ passport.use(new facebookStrategy({
         profileFields: ['id', 'displayName', 'photos', 'email', 'friends']
     },
     function (req, accessToken, refreshToken, profile, cb) {
+        var email = false;
         User.findOne({where: {email: profile.emails[0].value}})
             .then(function (user) {
                 if (user != null) {
+                    email = true;
                     return cb(null, user, req.flash('info', 'welcome back'));
                 } else {
                     return User.findOne({where: {facebookId: profile.id}});
                 }
             })
             .then(function (user) {
+                if(email){
+                    return;
+                }
                 if (user != null) {
                     return cb(null, user, req.flash('info', 'welcome back'));
                 } else {
@@ -47,8 +52,6 @@ passport.use(new facebookStrategy({
                     });
                     user.save().then(function (user) {
                         return cb(null, user, req.flash('info', 'Welcome from facebook'));
-                    }).catch(function (e) {
-                        console.log(e);
                     })
                 }
             })

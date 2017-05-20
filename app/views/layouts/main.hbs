@@ -14,7 +14,9 @@
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="/css/main.css">
-    <script src="js/main.js"></script>
+
+    <script src="/js/main.js"></script>
+
     <script>
         $(function () {
             $('#bs-example-navbar-collapse-1 #{{page}}').addClass('active');
@@ -53,7 +55,13 @@
                         </form>
 
                     </ul>
-
+                    <ul class="nav navbar-nav navbar-right">
+                        <canvas id="icon" class="weather-icon"></canvas>
+                        <label
+                                style="color: azure" id="temperature">hello</label>
+                    </ul>
+                    <script src="/js/Skycon.js"></script>
+                    <script src="/js/weather.js"></script>
                 {{else}}
                     <ul class="nav navbar-nav navbar-right">
                         <li id="login"><a href="/user/login">Login</a></li>
@@ -73,6 +81,7 @@
             {{/each}}
             <br>
             {{{body}}}
+
         </div>
     </div>
 </div>

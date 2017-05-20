@@ -5,3 +5,12 @@
 .session{
     margin-top: 5px;
 }
+.weather-icon{
+    height: 35px;
+    width: 60px;
+}
+#temperature{
+    vertical-align: top;
+    margin-top: 13px;
+    margin-right: 5px;
+}
