@@ -8,7 +8,6 @@ const multipartMiddleware = multipart();
 module.exports = function (app) {
 
     var indexRouter = Router().get('/', controllers.index.index);
-    app.use('/', indexRouter);
     var userRouter = Router()
         .get('/login', controllers.user.loadLogin)
         .get('/register', controllers.user.loadRegister)
@@ -22,6 +21,15 @@ module.exports = function (app) {
         .get('/login/facebook', passport.authenticate('facebook'));
     app.use('/user', userRouter);
     var aboutRouter = Router().get('/', controllers.about.index);
-    app.use('/about', Authentication, aboutRouter);
+    var friendRouter = Router()
+        .get('/add', controllers.friend.addFriend)
+        .get('/remove', controllers.friend.removeFriend)
+        .get('/get', controllers.friend.getFriend)
+        .get('/accept', controllers.friend.acceptFriend)
+        .get('/', controllers.friend.index);
 
+    app.use('/', indexRouter);
+    app.use('/user', userRouter);
+    app.use('/about', Authentication, aboutRouter);
+    app.use('/friend', Authentication, friendRouter);
 };

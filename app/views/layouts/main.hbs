@@ -15,7 +15,6 @@
             crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="/css/main.css">
 
-    <script src="/js/main.js"></script>
 
     <script>
         $(function () {
@@ -41,6 +40,7 @@
                 <ul class="nav navbar-nav">
                     <li id="index"><a href="/">Home</a></li>
                     <li id="about"><a href="/about">About</a></li>
+                    <li id="friend"><a href="/friend">Friend</a></li>
                 </ul>
                 {{#if session }}
                     <ul class="nav navbar-nav navbar-right session">
@@ -85,5 +85,7 @@
         </div>
     </div>
 </div>
+<script src="/js/main.js"></script>
+<script src="/socket.io/socket.io.js"></script>
 </body>
 </html>
