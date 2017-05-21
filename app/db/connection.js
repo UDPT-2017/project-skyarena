@@ -3,7 +3,7 @@ const Sequelize = require('sequelize');
 var sequelize = new Sequelize('postgres', 'postgres', '', {
     host: 'localhost',
     dialect: 'postgres',
-
+    logging: false,
     pool: {
         max: 5,
         min: 0,

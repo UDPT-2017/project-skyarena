@@ -1,6 +1,7 @@
 const User = require('../db/model').User;
 const Friend = require('../db/model').Friend;
 const _ = require('lodash');
+const MessageRoom = require('../db/model').MessageRoom;
 
 var friendController = {
     index: function (req, res) {
@@ -116,13 +117,21 @@ var friendController = {
             res.send({success: false});
             return;
         }
+        var messageRoom = MessageRoom.build({});
+        var friend;
         Friend.findAll({where: {toUserId: req.user.id, userId: req.query.id}}).then(function (friends) {
             if (friends.length !== 0) {
                 friends[0].check = true;
                 friends[0].save().then(function () {
-                    var friend = Friend.build({userId: req.user.id, toUserId: req.query.id, check: true});
+                    friend = Friend.build({userId: req.user.id, toUserId: req.query.id, check: true});
                     return friend.save();
                 }).then(function () {
+                    return messageRoom.save();
+                }).then(function () {
+                    friends[0].messageRoomId = messageRoom.id;
+                    friends[0].save();
+                    friend.messageRoomId = messageRoom.id;
+                    friend.save();
                     res.send({success: true});
                 })
             } else {
@@ -132,13 +141,18 @@ var friendController = {
     },
     removeFriend: function (req, res) {
         Friend.findOne({where: {userId: req.user.id, toUserId: req.query.id}}).then(function (friend) {
+            var messageRoomId;
             if (friend) {
                 friend.destroy().then(function () {
                     return Friend.findOne({where: {toUserId: req.user.id, userId: req.query.id}})
                 }).then(function (friend) {
-                   it return friend.destroy()
+                    messageRoomId = friend.messageRoomId;
+                    return friend.destroy()
                 }).then(function () {
-                    res.send({succes: true});
+                    return MessageRoom.findById(messageRoomId)
+                }).then(function (messageRoom) {
+                    messageRoom.destroy();
+                    res.send({succes: true})
                 })
             } else {
                 res.send({succes: false})

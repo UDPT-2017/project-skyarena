@@ -27,9 +27,13 @@ module.exports = function (app) {
         .get('/get', controllers.friend.getFriend)
         .get('/accept', controllers.friend.acceptFriend)
         .get('/', controllers.friend.index);
+    var messageRouter = Router()
+        .get('/', controllers.message.index)
+        .get('/:id', controllers.message.chatRoom);
 
     app.use('/', indexRouter);
     app.use('/user', userRouter);
     app.use('/about', Authentication, aboutRouter);
     app.use('/friend', Authentication, friendRouter);
+    app.use('/message', Authentication, messageRouter);
 };

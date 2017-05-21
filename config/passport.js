@@ -1,6 +1,7 @@
 var Strategy = require('passport-local').Strategy;
 const SaltAndHash = require('../config/password');
 const User = require('../app/db/model').User;
+const Friend = require('../app/db/model').Friend;
 const passport = require('passport');
 var facebookStrategy = require('passport-facebook').Strategy;
 
@@ -11,7 +12,17 @@ passport.serializeUser(function (user, done) {
 // used to deserialize the user
 passport.deserializeUser(function (id, done) {
     User.find({
-        where: {id: id}
+        where: {id: id},
+        include: [{
+            model: Friend,
+            as: "friends",
+            foreignKey: "userId",
+            include:[{
+                model: User,
+                as: "to",
+                foreignKey: "toUserId"
+            }]
+        }]
     }).then(function (user) {
         done(null, user);
     }, function (err, user) {
@@ -21,7 +32,7 @@ passport.deserializeUser(function (id, done) {
 passport.use(new facebookStrategy({
         clientID: process.env.CLIENT_ID,
         clientSecret: process.env.CLIENT_SECRET,
-        callbackURL: process.env.FACEBOOKCALLBACK ,
+        callbackURL: process.env.FACEBOOKCALLBACK,
         passReqToCallback: true,
         scope: ['user_friends'],
         profileFields: ['id', 'displayName', 'photos', 'email', 'friends']
@@ -38,7 +49,7 @@ passport.use(new facebookStrategy({
                 }
             })
             .then(function (user) {
-                if(email){
+                if (email) {
                     return;
                 }
                 if (user != null) {
