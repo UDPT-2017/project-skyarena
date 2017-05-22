@@ -2,7 +2,6 @@ const MessageRoom = require('../db/model').MessageRoom;
 const Message = require('../db/model').Message;
 const User = require('../db/model').User;
 const Friend = require('../db/model').Friend;
-
 var messageController = {
     index: function (req, res) {
         res.render('message/index', {
@@ -34,17 +33,19 @@ var messageController = {
                 return;
             }
             var friend;
-            if(messageRoom.friends[0].userId === parseInt(req.params.id)){
+            if (messageRoom.friends[0].userId === parseInt(req.params.id)) {
                 friend = messageRoom.friends[0].toUserId;
-            } else{
+            } else {
                 friend = messageRoom.friends[0].userId;
             }
             User.findById(friend).then(function (friend) {
                 res.render('message/show', {
                     page: "message",
                     messages: messageRoom.messages,
-                    friend: friend
-                })
+                    friend: friend,
+                    id: messageRoom.id
+                });
+
             })
 
         })

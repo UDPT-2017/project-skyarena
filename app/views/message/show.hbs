@@ -24,10 +24,9 @@
             <button data-widget="remove" id="removeClass" class="chat-header-button pull-right" type="button"><i class="glyphicon glyphicon-off"></i></button>
         </div>
     </div>
-    <div class="popup-messages">
+    <div class="popup-messages" id="messagesInsert">
         {{#each messages}}
             <div class="direct-chat-messages">
-
                 <div class="direct-chat-msg ">
                     <div class="direct-chat-info clearfix">
                         <span class="direct-chat-name pull-left">{{this.user.name}}</span>
@@ -42,6 +41,7 @@
                 </div>
             </div>
         {{/each}}
+
     </div>
     <div class="popup-messages-footer">
         <textarea id="status_message" placeholder="Type a message..." rows="15" cols="40" name="message"></textarea>
@@ -50,3 +50,29 @@
 <script src="/socket.io/socket.io.js"></script>
 <link rel="stylesheet" type="text/css" href="/css/message.css">
 <script src="/js/message.js"></script>
+<script>
+    $(function(){
+        var socket = io();
+        socket.emit("join",{
+            id: "{{id}}"
+        });
+        $("#status_message").keypress(function (e) {
+            if(e.which == 13 && !e.shiftKey) {
+                socket.emit("new message", {
+                    text: $("#status_message").val(),
+                    userId: {{session.id}},
+                    name: "{{session.name}}",
+                    avatar: "{{session.avatar}}"
+                });
+                $("#status_message").val("");
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        socket.on("create message", function (message) {
+            console.log(message);
+            $('#messagesInsert').append(`<div class="direct-chat-messages"> <div class="direct-chat-msg "> <div class="direct-chat-info clearfix"> <span class="direct-chat-name pull-left">` + message.name + `</span> </div> <img alt="message user image" src="` + message.avatar + `" class="direct-chat-img"> <div class="direct-chat-text">` + message.text + ` </div> <div class="direct-chat-info clearfix"> <span class="direct-chat-timestamp pull-right">` + message.date + `</span> </div> </div> </div>`)
+        });
+    });
+</script>

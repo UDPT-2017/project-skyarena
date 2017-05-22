@@ -6,6 +6,4 @@ $(function(){
     $("#removeClass").click(function () {
         $('#qnimate').removeClass('popup-box-on');
     });
-
-    var socket = io("http://localhost:3000");
 });
