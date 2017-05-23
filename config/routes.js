@@ -30,10 +30,12 @@ module.exports = function (app) {
     var messageRouter = Router()
         .get('/', controllers.message.index)
         .get('/:id', controllers.message.chatRoom);
-
+    var musicBoxRouter = Router()
+        .get('/', controllers.musicBox.index);
     app.use('/', indexRouter);
     app.use('/user', userRouter);
     app.use('/about', Authentication, aboutRouter);
     app.use('/friend', Authentication, friendRouter);
     app.use('/message', Authentication, messageRouter);
+    app.use('/musicBox', musicBoxRouter);
 };

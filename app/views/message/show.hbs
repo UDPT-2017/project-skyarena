@@ -18,7 +18,7 @@
 
 <div class="popup-box chat-popup" id="qnimate">
     <div class="popup-head">
-        <div class="popup-head-left pull-left"><img src="{{friend.avatar}}" alt="iamgurdeeposahan"> {{friend.name}}</div>
+        <div class="popup-head-left pull-left"><img src="{{session.avatar}}" alt="iamgurdeeposahan"> {{session.name}}</div>
         <div class="popup-head-right pull-right">
 
             <button data-widget="remove" id="removeClass" class="chat-header-button pull-right" type="button"><i class="glyphicon glyphicon-off"></i></button>
@@ -52,6 +52,7 @@
 <script src="/js/message.js"></script>
 <script>
     $(function(){
+
         var socket = io();
         socket.emit("join",{
             id: "{{id}}"
@@ -69,10 +70,9 @@
                 return false;
             }
         });
-
         socket.on("create message", function (message) {
-            console.log(message);
             $('#messagesInsert').append(`<div class="direct-chat-messages"> <div class="direct-chat-msg "> <div class="direct-chat-info clearfix"> <span class="direct-chat-name pull-left">` + message.name + `</span> </div> <img alt="message user image" src="` + message.avatar + `" class="direct-chat-img"> <div class="direct-chat-text">` + message.text + ` </div> <div class="direct-chat-info clearfix"> <span class="direct-chat-timestamp pull-right">` + message.date + `</span> </div> </div> </div>`)
+            $("#messagesInsert").scrollTop($("#messagesInsert")[0].scrollHeight);
         });
     });
 </script>

@@ -41,7 +41,7 @@ body
     display: block !important;
 }
 .popup-box .popup-head {
-    background-color: #fff;
+    background-color: rgba(157, 160, 142, 0.72);
     clear: both;
     color: #7b7b7b;
     display: inline-table;
@@ -92,7 +92,7 @@ body
     width: 95% !important;
 }
 .popup-messages-footer {
-    background: #fff none repeat scroll 0 0;
+    background: rgba(157, 160, 142, 0.72) none repeat scroll 0 0;
     bottom: 0;
     position: absolute;
     width: 100%;

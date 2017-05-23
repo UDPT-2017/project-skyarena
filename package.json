@@ -9,6 +9,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.16.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-react-es2015": "^1.2.0",
+    "babelify": "^7.3.0",
     "body-parser": "^1.17.1",
     "cloudinary": "^1.8.0",
     "connect-multiparty": "^2.0.0",
@@ -26,7 +31,17 @@
     "passport-local": "^1.0.0",
     "pg": "^6.1.5",
     "pg-hstore": "^2.3.2",
+    "react": "^15.5.4",
+    "react-bootstrap": "^0.31.0",
+    "react-dom": "^15.5.4",
+    "react-redux": "^5.0.5",
+    "redux": "^3.6.0",
+    "redux-logger": "^3.0.6",
+    "redux-promise": "^0.5.3",
+    "redux-thunk": "^2.2.0",
     "sequelize": "^3.30.4",
-    "socket.io": "^2.0.1"
+    "socket.io": "^2.0.1",
+    "watchify": "^3.9.0",
+    "webpack": "^2.6.0"
   }
 }
