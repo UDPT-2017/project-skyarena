@@ -1,9 +1,7 @@
-{{#each session.friends}}
-    {{#if this.check}}
-        <a href="/message/{{this.messageRoomId}}" class="btn btn-info" id="room-{{this.messageRoomId}}">
-            Chat with
-        </a>
-        <label for="room-{{this.messageRoomId}}">{{this.to.name}}</label>
-        <br>
-    {{/if}}
-{{/each}}
+
+<div id="message-page">
+
+</div>
+<script src="/js/message.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/css/message.css">

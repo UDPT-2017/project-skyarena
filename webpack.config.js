@@ -3,11 +3,13 @@ const dotenv = require('dotenv');
 dotenv.load();
 
 var config = {
-    entry: __dirname + "/src/index.jsx",
+    entry: {
+        music: __dirname +"/src/index.jsx",
+        message: __dirname +"/src/index2.jsx"
+    },
     output: {
         path: __dirname + "/public/js/",
-        filename: "music.js",
-        publicPath: "/public/"
+        filename: "[name].js"
     },
     module: {
         loaders: [
@@ -22,7 +24,8 @@ var config = {
     },
     plugins:[
         new webpack.DefinePlugin({
-            'process.env.SPOTIFY_BASE_URL': JSON.stringify(process.env.SPOTIFY_BASE_URL)
+            'process.env.SPOTIFY_BASE_URL': JSON.stringify(process.env.SPOTIFY_BASE_URL),
+            'process.env.URL': JSON.stringify(process.env.URL)
         })
     ]
 };

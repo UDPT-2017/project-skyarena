@@ -14,3 +14,23 @@ export const queryArtist = (payload) => {
 
     };
 };
+export const fetchChatRoom = (payload) => {
+    const url = process.env.URL + '/message/' + payload.toString();
+    return function (dispatch) {
+        axios
+            .get(url)
+            .then(function (response) {
+                dispatch({
+                    type: 'FETCH_CHAT_ROOM',
+                    payload: response
+                })
+            });
+
+    };
+};
+export const newMessage = (payload) => {
+    return {
+        type: 'NEW_MESSAGE',
+        payload: payload,
+    }
+};

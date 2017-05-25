@@ -6,18 +6,23 @@ import thunk from 'redux-thunk';
 import promise from 'redux-promise';
 import {createLogger} from 'redux-logger';
 import allReducers from './reducers';
-import App from './components/App.jsx';
-import ChatPopUp from './components/ChatPopUp.jsx'
+import ChatIndex from './components/ChatIndex.jsx';
+import axios from 'axios';
 
 const logger = createLogger();
 const store = createStore(
     allReducers,
     applyMiddleware(thunk, promise, logger)
 );
-ReactDOM.render(
-    <Provider store={store}>
-        <App />
-    </Provider>
-    ,
-    document.getElementById('music')
-);
+$(function () {
+    axios.get(process.env.URL + '/message/get').then(function (res) {
+        ReactDOM.render(
+            <Provider store={store}>
+                <ChatIndex user={res.data}/>
+            </Provider>
+            ,
+            document.getElementById('message-page')
+        );
+    });
+
+});
