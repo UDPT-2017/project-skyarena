@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import {FormGroup, FormControl, InputGroup, Glyphicon} from 'react-bootstrap'
-import * as actions from '../actions/index'
+import * as actions from '../../actions/index'
 import  {bindActionCreators} from 'redux'
 import {connect}  from'react-redux';
-import Profile from '../components/Profile.jsx'
+import Profile from './Profile.jsx'
 
 class App extends Component {
     constructor(props) {

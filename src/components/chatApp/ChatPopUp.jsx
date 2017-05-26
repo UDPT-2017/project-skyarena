@@ -10,12 +10,13 @@ class ChatPopUp extends Component {
     handlesubmit(e) {
         if (e.which == 13 && !e.shiftKey) {
             e.preventDefault();
-            this.props.socket.emit("new message", {
+            this.props.socket.emit("NEW_MESSAGE", {
                 text: e.target.value,
                 userId: this.props.data.session.id,
                 name: this.props.data.session.name,
                 avatar: this.props.data.session.avatar,
-                id: this.props.data.id
+                id: this.props.data.id,
+                friend: this.props.data.friend.id
             });
             e.target.value = "";
         }

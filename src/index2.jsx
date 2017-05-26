@@ -6,7 +6,7 @@ import thunk from 'redux-thunk';
 import promise from 'redux-promise';
 import {createLogger} from 'redux-logger';
 import allReducers from './reducers';
-import ChatIndex from './components/ChatIndex.jsx';
+import ChatIndex from './components/chatApp/ChatIndex.jsx';
 import axios from 'axios';
 
 const logger = createLogger();

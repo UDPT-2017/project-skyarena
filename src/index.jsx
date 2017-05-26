@@ -6,8 +6,7 @@ import thunk from 'redux-thunk';
 import promise from 'redux-promise';
 import {createLogger} from 'redux-logger';
 import allReducers from './reducers';
-import App from './components/App.jsx';
-import ChatPopUp from './components/ChatPopUp.jsx'
+import App from './components/musicBoxApp/App.jsx';
 
 const logger = createLogger();
 const store = createStore(

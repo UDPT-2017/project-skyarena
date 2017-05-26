@@ -2,9 +2,33 @@ const MessageRoom = require('../db/model').MessageRoom;
 const Message = require('../db/model').Message;
 const User = require('../db/model').User;
 const Friend = require('../db/model').Friend;
+const MessageStatus = require('../db/model').MessageStatus;
+
 var messageController = {
     getAllFriend: function (req, res) {
       res.send(req.user);
+    },
+    getStatus: function (req, res) {
+        MessageStatus.findAll({
+            where: {
+                userId: req.user.id,
+                number:{
+                    $gt: 0
+                }
+            },
+            include: [{
+                model: User,
+                as: "user"
+            },{
+                model: User,
+                as: "from"
+            }],
+            order:[
+                ['updatedAt', 'DESC']
+            ]
+        }).then(function (messageStatuses) {
+            res.send(messageStatuses);
+        })
     },
     index: function (req, res) {
         res.render('message/index', {
