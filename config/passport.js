@@ -34,7 +34,6 @@ passport.use(new facebookStrategy({
         clientSecret: process.env.CLIENT_SECRET,
         callbackURL: process.env.FACEBOOKCALLBACK,
         passReqToCallback: true,
-        scope: ['user_friends'],
         profileFields: ['id', 'displayName', 'photos', 'email', 'friends']
     },
     function (req, accessToken, refreshToken, profile, cb) {
