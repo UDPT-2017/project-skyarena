@@ -39,6 +39,7 @@ passport.use(new facebookStrategy({
     },
     function (req, accessToken, refreshToken, profile, cb) {
         var email = false;
+        console.log(profile)
         User.findOne({where: {email: profile.emails[0].value}})
             .then(function (user) {
                 if (user != null) {
