@@ -15,7 +15,7 @@ const store = createStore(
     applyMiddleware(thunk, promise, logger)
 );
 $(function () {
-    axios.get(process.env.URL + '/message/get').then(function (res) {
+    axios.get('/message/get').then(function (res) {
         ReactDOM.render(
             <Provider store={store}>
                 <ChatIndex user={res.data}/>
