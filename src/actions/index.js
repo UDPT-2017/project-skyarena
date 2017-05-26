@@ -30,6 +30,7 @@ export const fetchChatRoom = (payload) => {
                 }else{
                     friendId = friend.userId;
                 }
+                console.log(friendId);
                 payload.socket.emit("LOAD_CHAT_ROOM",{
                     user: payload.props.user.id,
                     friend: friendId,
