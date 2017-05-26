@@ -53,6 +53,7 @@ module.exports = function (server) {
 
         });
         socket.on("LOAD_CHAT_ROOM", function (data) {
+            console.log(data);
             MessageStatus.findOne({
                 where: {
                     userId: data.friend,
