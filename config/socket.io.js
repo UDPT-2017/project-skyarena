@@ -55,8 +55,8 @@ module.exports = function (server) {
         socket.on("LOAD_CHAT_ROOM", function (data) {
             MessageStatus.findOne({
                 where: {
-                    userId: data.user,
-                    fromUserId: data.friend
+                    userId: data.friend,
+                    fromUserId: data.user
                 }
             }).then(function (messageStatus) {
                 if (messageStatus) {

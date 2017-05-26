@@ -24,16 +24,9 @@ export const fetchChatRoom = (payload) => {
                     type: 'FETCH_CHAT_ROOM',
                     payload: response
                 });
-                var friendId;
-                if(friend.userId === req.user.id){
-                    friendId = friend.toUserId;
-                }else{
-                    friendId = friend.userId;
-                }
-                console.log(friendId);
                 payload.socket.emit("LOAD_CHAT_ROOM",{
                     user: payload.props.user.id,
-                    friend: friendId,
+                    friend: payload.friend.id,
                     room: payload.friend.messageRoomId.toString()
                 });
             });
