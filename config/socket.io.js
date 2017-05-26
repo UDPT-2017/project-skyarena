@@ -56,14 +56,13 @@ module.exports = function (server) {
             console.log(data);
             MessageStatus.findOne({
                 where: {
-                    userId: data.friend,
-                    fromUserId: data.user
+                    userId: data.user,
+                    fromUserId:  data.friend
                 }
             }).then(function (messageStatus) {
                 if (messageStatus) {
                     messageStatus.number = 0;
                     messageStatus.save().then(function () {
-                        console.log(data.room);
                         io.to(data.room.toString()).emit("STATUS_CHANGE",{
                             room: data.room
                         })
