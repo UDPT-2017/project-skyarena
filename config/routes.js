@@ -17,7 +17,7 @@ module.exports = function (app) {
             failureFlash: true
         }), controllers.user.login)
         .post('/logout', controllers.user.logout)
-        .get('/login/facebook/callback', passport.authenticate('facebook', {failureRedirect: '/login'}), controllers.user.loginFacebook)
+        .get('/login/facebook/callback', passport.authenticate('facebook', {failureRedirect: '/login', scope:['email']}), controllers.user.loginFacebook)
         .get('/login/facebook', passport.authenticate('facebook'));
     app.use('/user', userRouter);
     var aboutRouter = Router().get('/', controllers.about.index);
