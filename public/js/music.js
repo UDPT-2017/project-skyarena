@@ -33130,7 +33130,7 @@ var fetchChatRoom = exports.fetchChatRoom = function fetchChatRoom(payload) {
             });
             payload.socket.emit("LOAD_CHAT_ROOM", {
                 user: payload.props.user.id,
-                friend: payload.friend.id,
+                friend: payload.friend.toUserId,
                 room: payload.friend.messageRoomId.toString()
             });
         });
