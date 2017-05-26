@@ -35,7 +35,7 @@ passport.use(new facebookStrategy({
         callbackURL: process.env.FACEBOOKCALLBACK,
         passReqToCallback: true,
         scope: ['user_friends'],
-        profileFields: ['id', 'displayName', 'photos', 'email', 'friends']
+        profileFields: ['id', 'displayName', 'photos', 'friends']
     },
     function (req, accessToken, refreshToken, profile, cb) {
         var email = false;
