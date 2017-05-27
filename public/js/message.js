@@ -33120,9 +33120,6 @@ var ChatIndex = function (_Component) {
             this.props.actions.fetchOnlineStatus();
         }
     }, {
-        key: 'componentDidUpdate',
-        value: function componentDidUpdate() {}
-    }, {
         key: 'componentWillUnmount',
         value: function componentWillUnmount() {
             var rooms = [];

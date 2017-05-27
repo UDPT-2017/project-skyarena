@@ -51,10 +51,6 @@ class ChatIndex extends Component {
         this.props.actions.fetchOnlineStatus();
     }
 
-    componentDidUpdate() {
-
-    }
-
     componentWillUnmount() {
         var rooms = [];
         this.props.state.online.friends.map((friend) => {
