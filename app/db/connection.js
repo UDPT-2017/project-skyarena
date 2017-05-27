@@ -1,6 +1,9 @@
 const Sequelize = require('sequelize');
 
-var sequelize = new Sequelize(process.env.DATABASE_URL || "postgres://postgres@localhost:5432/postgres");
+var sequelize = new Sequelize(process.env.DATABASE_URL,{
+    dialect: 'postgres',
+    logging: false
+});
 sequelize
     .authenticate()
     .then(function(err) {

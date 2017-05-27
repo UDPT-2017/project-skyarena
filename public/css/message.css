@@ -280,4 +280,6 @@ body
     position: relative;
 }
 
-
+.chat-status{
+    text-align: center;
+}

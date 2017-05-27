@@ -27,8 +27,8 @@ export const fetchChatRoom = (payload) => {
 
                 payload.socket.emit("LOAD_CHAT_ROOM",{
                     user: payload.props.user.id,
-                    friend: payload.friend.toUserId,
-                    room: payload.friend.messageRoomId.toString()
+                    friend: payload.friend,
+                    room: payload.id.toString()
                 });
             });
 

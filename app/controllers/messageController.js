@@ -6,28 +6,29 @@ const MessageStatus = require('../db/model').MessageStatus;
 
 var messageController = {
     getAllFriend: function (req, res) {
-      res.send(req.user);
+        res.send(req.user);
     },
     getStatus: function (req, res) {
         MessageStatus.findAll({
             where: {
                 userId: req.user.id,
-                number:{
+                number: {
                     $gt: 0
                 }
             },
             include: [{
                 model: User,
                 as: "user"
-            },{
+            }, {
                 model: User,
                 as: "from"
             }],
-            order:[
+            order: [
                 ['updatedAt', 'DESC']
             ]
-        }).then(function (messageStatuses) {
-            res.send(messageStatuses);
+        }).then(function (result) {
+            res.send(result);
+
         })
     },
     index: function (req, res) {

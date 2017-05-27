@@ -6,6 +6,7 @@ import  {bindActionCreators} from 'redux'
 import {connect}  from 'react-redux'
 import io from 'socket.io-client'
 
+
 var socket = io();
 
 class ChatIndex extends Component {
@@ -33,6 +34,7 @@ class ChatIndex extends Component {
 
     }
     componentDidMount() {
+
         this.props.actions.fetchStatus();
 
         this.props.user.friends.map(function (friend) {
@@ -54,7 +56,7 @@ class ChatIndex extends Component {
                                 return (
                                     <div key={link}>
                                         <button className="btn btn-info col-xs-12"  onClick={(e) => {
-                                            var data ={id: friend.messageRoomId, socket: socket, props: this.props, friend: friend};
+                                            var data ={id: friend.messageRoomId, socket: socket, props: this.props, friend: friend.toUserId};
                                             this.props.actions.fetchChatRoom(data);
                                         }}>
                                             Chat with {friend.to.name}
@@ -67,7 +69,7 @@ class ChatIndex extends Component {
 
                 </div>
                 <div className="col-xs-8">
-                    <StatusIndex statuses = {this.props.state.status}/>
+                    <StatusIndex statuses = {this.props.state.status}  chatProps={this.props} socket = {socket}/>
                 </div>
                 <div>
                     <ChatPopUp data={this.props.state.chat} socket={socket}/>

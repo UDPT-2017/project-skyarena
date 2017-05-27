@@ -33,6 +33,7 @@ module.exports = function (server) {
                         messageStatus = MessageStatus.build({
                             number: 1,
                             userId: data.friend,
+                            inMessageRoomId: data.id,
                             fromUserId: parseInt(data.userId)
                         });
                     }
@@ -51,7 +52,6 @@ module.exports = function (server) {
 
         });
         socket.on("LOAD_CHAT_ROOM", function (data) {
-            console.log(data);
             MessageStatus.findOne({
                 where: {
                     userId: data.user,

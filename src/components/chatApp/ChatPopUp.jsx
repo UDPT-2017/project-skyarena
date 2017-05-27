@@ -1,12 +1,22 @@
 import React, {Component} from 'react'
 import ChatMessage from './ChatMessage.jsx'
+import $ from 'jquery';
 
 class ChatPopUp extends Component {
     constructor(props) {
         super(props);
 
     }
-
+    componentDidMount(){
+        if (!(this.props.data === null)) {
+            $("#messagesInsert").scrollTop($("#messagesInsert")[0].scrollHeight);
+        }
+    }
+    componentDidUpdate(){
+        if (!(this.props.data === null)) {
+            $("#messagesInsert").scrollTop($("#messagesInsert")[0].scrollHeight);
+        }
+    }
     handlesubmit(e) {
         if (e.which == 13 && !e.shiftKey) {
             e.preventDefault();
