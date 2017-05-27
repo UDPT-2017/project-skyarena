@@ -13,6 +13,7 @@ class ChatIndex extends Component {
         super(props);
         socket.on('CREATED_MESSAGE', (data) => {
             if (this.props.state.chat.id === data.id) {
+                console.log(data);
                 this.props.actions.newMessage(data)
             }else{
                 this.props.actions.fetchStatus();
