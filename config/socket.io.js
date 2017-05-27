@@ -77,11 +77,11 @@ module.exports = function (server) {
                 }
             })
         });
-        socket.on('OFFLINE', function (data) {
+        socket.on('OFFLINE', function () {
             User.findById(data.userId).then(function (user) {
                 user.check = false;
                 user.save().then(function () {
-                    data.rooms.map(function (room) {
+                    rooms.map(function (room) {
                         socket.broadcast.to(room).emit('UPDATE_USER_ONLINE');
                     })
                 });
