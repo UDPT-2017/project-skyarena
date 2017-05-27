@@ -33078,15 +33078,6 @@ var ChatIndex = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (ChatIndex.__proto__ || Object.getPrototypeOf(ChatIndex)).call(this, props));
 
-        socket.emit("ONLINE", {
-            userId: props.data.id
-        });
-        _this.props.data.friends.map(function (friend) {
-            socket.emit("JOIN", {
-                id: friend.messageRoomId.toString()
-            });
-        });
-
         socket.on('CREATED_MESSAGE', function (data) {
             if (_this.props.state.chat && _this.props.state.chat.id === data.id) {
                 _this.props.actions.newMessage(data);
@@ -33110,7 +33101,14 @@ var ChatIndex = function (_Component) {
         socket.on('UPDATE_USER_ONLINE', function () {
             _this.props.actions.fetchOnlineStatus();
         });
-
+        socket.emit("ONLINE", {
+            userId: _this.props.user.id
+        });
+        _this.props.user.friends.map(function (friend) {
+            socket.emit("JOIN", {
+                id: friend.messageRoomId.toString()
+            });
+        });
         return _this;
     }
 
@@ -47604,8 +47602,8 @@ $(function () {
     _axios2.default.get('/message/get').then(function (res) {
         _reactDom2.default.render(_react2.default.createElement(
             _reactRedux.Provider,
-            { store: store, data: res.data },
-            _react2.default.createElement(_ChatIndex2.default, null)
+            { store: store },
+            _react2.default.createElement(_ChatIndex2.default, { user: res.data })
         ), document.getElementById('message-page'));
     });
 });
