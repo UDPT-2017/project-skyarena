@@ -33039,7 +33039,7 @@ var ChatIndex = function (_Component) {
         var _this = _possibleConstructorReturn(this, (ChatIndex.__proto__ || Object.getPrototypeOf(ChatIndex)).call(this, props));
 
         socket.on('CREATED_MESSAGE', function (data) {
-            if (_this.props.state.chat.id && _this.props.state.chat.id === data.id) {
+            if (_this.props.state.chat && _this.props.state.chat.id === data.id) {
                 _this.props.actions.newMessage(data);
             } else {
                 _this.props.actions.fetchStatus();
