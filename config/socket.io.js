@@ -1,6 +1,6 @@
 const Message = require("../app/db/model").Message;
 const MessageStatus = require('../app/db/model').MessageStatus;
-const USER = require('../app/db/model').USER;
+const User = require('../app/db/model').User;
 const Friend = require('../app/db/model').Friend;
 
 module.exports = function (server) {
@@ -9,7 +9,7 @@ module.exports = function (server) {
     var user;
     io.sockets.on('connection', function (socket) {
         socket.on("ONLINE", function (data) {
-            USER.findById(data.userId).then(function (result) {
+            User.findById(data.userId).then(function (result) {
                 user = result;
                 user.check = true;
                 user.save();
