@@ -26,7 +26,7 @@ export const fetchChatRoom = (payload) => {
                 });
 
                 payload.socket.emit("LOAD_CHAT_ROOM",{
-                    user: payload.props.user.id,
+                    user: payload.props.online.id,
                     friend: payload.friend,
                     room: payload.id.toString()
                 });
@@ -40,7 +40,6 @@ export const newMessage = (payload) => {
         payload: payload,
     }
 };
-
 export const fetchStatus = () => {
     const url = '/message/status';
     return function (dispatch) {
@@ -49,6 +48,20 @@ export const fetchStatus = () => {
             .then(function (response) {
                 dispatch({
                     type: 'FETCH_STATUS',
+                    payload: response.data
+                })
+            });
+
+    };
+};
+export const fetchOnlineStatus = ()=>{
+    const url = '/message/get';
+    return function (dispatch) {
+        axios
+            .get(url)
+            .then(function (response) {
+                dispatch({
+                    type: 'FETCH_ONLINE_STATUS',
                     payload: response.data
                 })
             });

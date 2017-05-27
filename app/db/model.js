@@ -27,7 +27,7 @@ User.sync()
         User.hasMany(MessageStatus,{as: "messageStatuses", foreignKey: "userId"});
         MessageStatus.belongsTo(User,{as: "from", foreignKey: "fromUserId"});
         MessageStatus.belongsTo(MessageRoom,{as: "in", foreignKey: "inMessageRoomId"});
-        MessageStatus.sync({});
+        MessageStatus.sync();
     })
 ;
 module.exports = {

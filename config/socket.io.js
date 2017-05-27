@@ -1,15 +1,24 @@
 const Message = require("../app/db/model").Message;
 const MessageStatus = require('../app/db/model').MessageStatus;
-const MessageRoom = require('../app/db/model').MessageRoom;
+const USER = require('../app/db/model').USER;
 const Friend = require('../app/db/model').Friend;
 
 module.exports = function (server) {
     var io = require('socket.io').listen(server);
-    var room;
+    var rooms = [];
+    var user;
     io.sockets.on('connection', function (socket) {
-        socket.on("join", function (data) {
-            room = data.id;
-            socket.join(room);
+        socket.on("ONLINE", function (data) {
+            USER.findById(data.userId).then(function (result) {
+                user = result;
+                user.check = true;
+                user.save();
+            })
+        });
+        socket.on("JOIN", function (data) {
+            socket.join(data.id);
+            rooms.push(data.id);
+            socket.broadcast.to(data.id).emit('UPDATE_USER_ONLINE');
         });
         socket.on("NEW_MESSAGE", function (data) {
             var message = Message.build({});
@@ -43,7 +52,7 @@ module.exports = function (server) {
                     io.to(data.id.toString()).emit("CREATED_MESSAGE", {
                         name: data.name,
                         avatar: data.avatar,
-                        createdAt : message.createdAt,
+                        createdAt: message.createdAt,
                         text: message.text,
                         id: data.id
                     });
@@ -55,13 +64,13 @@ module.exports = function (server) {
             MessageStatus.findOne({
                 where: {
                     userId: data.user,
-                    fromUserId:  data.friend
+                    fromUserId: data.friend
                 }
             }).then(function (messageStatus) {
                 if (messageStatus) {
                     messageStatus.number = 0;
                     messageStatus.save().then(function () {
-                        io.to(data.room.toString()).emit("STATUS_CHANGE",{
+                        io.to(data.room.toString()).emit("STATUS_CHANGE", {
                             room: data.room
                         })
                     })
@@ -69,9 +78,12 @@ module.exports = function (server) {
             })
         });
         socket.on('disconnect', function () {
-            console.log("disconnect");
-            socket.leave(room);
-            socket.disconnect();
+            user.check = false;
+            user.save().then(function () {
+                rooms.map(function (room) {
+                    socket.broadcast.to(room).emit('UPDATE_USER_ONLINE');
+                })
+            });
         });
 
     })

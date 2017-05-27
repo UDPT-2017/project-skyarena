@@ -17,12 +17,11 @@ const store = createStore(
 $(function () {
     axios.get('/message/get').then(function (res) {
         ReactDOM.render(
-            <Provider store={store}>
-                <ChatIndex user={res.data}/>
+            <Provider store={store} userId={res.data.id}>
+                <ChatIndex />
             </Provider>
             ,
             document.getElementById('message-page')
         );
-    });
-
+    })
 });

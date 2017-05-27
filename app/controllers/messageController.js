@@ -5,6 +5,13 @@ const Friend = require('../db/model').Friend;
 const MessageStatus = require('../db/model').MessageStatus;
 
 var messageController = {
+    getFriendStatus:function (req, res) {
+        Friend.findAll({where: {
+            userId: req.user.id
+        }}).then(function (friends) {
+            res.send(friends);
+        })
+    },
     getAllFriend: function (req, res) {
         res.send(req.user);
     },

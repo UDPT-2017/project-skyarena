@@ -283,3 +283,6 @@ body
 .chat-status{
     text-align: center;
 }
+.status-icon{
+    padding-left: 10px;
+}

@@ -31,6 +31,7 @@ module.exports = function (app) {
         .get('/', controllers.message.index)
         .get('/get', controllers.message.getAllFriend)
         .get('/status', controllers.message.getStatus)
+        .get('/online', controllers.message.getFriendStatus)
         .get('/:id', controllers.message.chatRoom);
     var musicBoxRouter = Router()
         .get('/', controllers.musicBox.index);
