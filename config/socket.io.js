@@ -78,6 +78,8 @@ module.exports = function (server) {
             })
         });
         socket.on('OFFLINE', function () {
+            console.log("offline");
+            console.log(rooms);
             User.findById(data.userId).then(function (user) {
                 user.check = false;
                 user.save().then(function () {
