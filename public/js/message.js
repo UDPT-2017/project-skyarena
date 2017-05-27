@@ -33048,8 +33048,8 @@ var ChatIndex = function (_Component) {
         socket.on('STATUS_CHANGE', function () {
             _this.props.actions.fetchStatus();
         });
-        socket.on('CREATED_MESSAGE_STATUS', function (data) {
-            if (data) {
+        socket.on('CREATED_MESSAGE_STATUS', function () {
+            if (_this.props.state.chat) {
                 socket.emit("LOAD_CHAT_ROOM", {
                     user: _this.props.state.chat.session.id,
                     friend: _this.props.state.chat.friend.id,
