@@ -23,11 +23,10 @@ class ChatIndex extends Component {
             this.props.actions.fetchStatus();
         });
         socket.on('CREATED_MESSAGE_STATUS',()=>{
-            console.log(this);
             socket.emit("LOAD_CHAT_ROOM",{
-                user: this.props.state.user.id,
-                friend: this.props.state.friend.id,
-                room: this.props.state.friend.messageRoomId.toString()
+                user: this.props.state.chat.session.id,
+                friend: this.props.state.chat.friend.id,
+                room: this.props.state.chat.friend.messageRoomId.toString()
             });
         })
 
