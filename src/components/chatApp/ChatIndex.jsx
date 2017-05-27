@@ -21,12 +21,14 @@ class ChatIndex extends Component {
         socket.on('STATUS_CHANGE', () => {
             this.props.actions.fetchStatus();
         });
-        socket.on('CREATED_MESSAGE_STATUS',()=>{
-            socket.emit("LOAD_CHAT_ROOM",{
-                user: this.props.state.chat.session.id,
-                friend: this.props.state.chat.friend.id,
-                room: this.props.state.chat.id.toString()
-            });
+        socket.on('CREATED_MESSAGE_STATUS',(data)=>{
+            if(data){
+                socket.emit("LOAD_CHAT_ROOM",{
+                    user: this.props.state.chat.session.id,
+                    friend: this.props.state.chat.friend.id,
+                    room: this.props.state.chat.id.toString()
+                });
+            }
         })
 
     }

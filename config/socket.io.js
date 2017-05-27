@@ -46,7 +46,7 @@ module.exports = function (server) {
                         text: message.text,
                         id: data.id
                     });
-                    socket.broadcast.to(data.id.toString()).emit("CREATED_MESSAGE_STATUS")
+                    socket.broadcast.to(data.id.toString()).emit("CREATED_MESSAGE_STATUS", data.id)
                 })
 
         });
