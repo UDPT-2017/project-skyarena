@@ -31215,6 +31215,7 @@ var fetchChatRoom = exports.fetchChatRoom = function fetchChatRoom(payload) {
                 type: 'FETCH_CHAT_ROOM',
                 payload: response
             });
+
             payload.socket.emit("LOAD_CHAT_ROOM", {
                 user: payload.props.user.id,
                 friend: payload.friend.toUserId,
@@ -33049,9 +33050,9 @@ var ChatIndex = function (_Component) {
         });
         socket.on('CREATED_MESSAGE_STATUS', function () {
             socket.emit("LOAD_CHAT_ROOM", {
-                user: _this.props.state.user.id,
-                friend: _this.props.state.friend.id,
-                room: _this.props.state.friend.messageRoomId.toString()
+                user: _this.props.state.chat.session.id,
+                friend: _this.props.state.chat.friend.id,
+                room: _this.props.state.chat.friend.messageRoomId.toString()
             });
         });
 

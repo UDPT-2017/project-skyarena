@@ -33128,6 +33128,7 @@ var fetchChatRoom = exports.fetchChatRoom = function fetchChatRoom(payload) {
                 type: 'FETCH_CHAT_ROOM',
                 payload: response
             });
+
             payload.socket.emit("LOAD_CHAT_ROOM", {
                 user: payload.props.user.id,
                 friend: payload.friend.toUserId,
