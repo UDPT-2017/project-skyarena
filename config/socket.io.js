@@ -77,13 +77,16 @@ module.exports = function (server) {
                 }
             })
         });
-        socket.on('disconnect', function () {
-            user.check = false;
-            user.save().then(function () {
-                rooms.map(function (room) {
-                    socket.broadcast.to(room).emit('UPDATE_USER_ONLINE');
-                })
-            });
+        socket.on('OFFLINE', function (data) {
+
+            User.findById(data.userId).then(function (user) {
+                user.check = false;
+                user.save().then(function () {
+                    data.rooms.map(function (room) {
+                        socket.broadcast.to(room).emit('UPDATE_USER_ONLINE');
+                    })
+                });
+            })
 
         });
 

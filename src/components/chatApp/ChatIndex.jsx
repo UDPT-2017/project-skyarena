@@ -56,8 +56,13 @@ class ChatIndex extends Component {
     }
 
     componentWillUnmount() {
+        var rooms = [];
+        this.props.state.online.friends.map((friend) => {
+            rooms.push(friend.messageRoomId.toString());
+        });
         socket.emit("OFFLINE", {
-            userId: this.props.state.online.id
+            userId: this.props.state.online.id,
+            rooms: rooms
         });
     }
 

@@ -33125,8 +33125,13 @@ var ChatIndex = function (_Component) {
     }, {
         key: 'componentWillUnmount',
         value: function componentWillUnmount() {
+            var rooms = [];
+            this.props.state.online.friends.map(function (friend) {
+                rooms.push(friend.messageRoomId.toString());
+            });
             socket.emit("OFFLINE", {
-                userId: this.props.state.online.id
+                userId: this.props.state.online.id,
+                rooms: rooms
             });
         }
     }, {
