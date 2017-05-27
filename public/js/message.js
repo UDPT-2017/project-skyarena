@@ -33078,9 +33078,8 @@ var ChatIndex = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (ChatIndex.__proto__ || Object.getPrototypeOf(ChatIndex)).call(this, props));
 
-        console.log(props);
         socket.emit("ONLINE", {
-            userId: _this.props.data.id
+            userId: props.data.id
         });
         _this.props.data.friends.map(function (friend) {
             socket.emit("JOIN", {

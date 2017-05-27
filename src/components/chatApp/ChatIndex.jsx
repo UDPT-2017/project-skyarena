@@ -12,9 +12,8 @@ var socket = io();
 class ChatIndex extends Component {
     constructor(props) {
         super(props);
-        console.log(props);
         socket.emit("ONLINE", {
-            userId: this.props.data.id
+            userId: props.data.id
         });
         this.props.data.friends.map((friend) => {
             socket.emit("JOIN", {
