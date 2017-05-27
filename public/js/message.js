@@ -33052,7 +33052,7 @@ var ChatIndex = function (_Component) {
             socket.emit("LOAD_CHAT_ROOM", {
                 user: _this.props.state.chat.session.id,
                 friend: _this.props.state.chat.friend.id,
-                room: _this.props.state.chat.friend.messageRoomId.toString()
+                room: _this.props.state.chat.id.toString()
             });
         });
 

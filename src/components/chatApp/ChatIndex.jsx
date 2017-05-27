@@ -25,7 +25,7 @@ class ChatIndex extends Component {
             socket.emit("LOAD_CHAT_ROOM",{
                 user: this.props.state.chat.session.id,
                 friend: this.props.state.chat.friend.id,
-                room: this.props.state.chat.friend.messageRoomId.toString()
+                room: this.props.state.chat.id.toString()
             });
         })
 
