@@ -17,7 +17,7 @@ const store = createStore(
 $(function () {
     axios.get('/message/get').then(function (res) {
         ReactDOM.render(
-            <Provider store={store} userId={res.data.id}>
+            <Provider store={store} data={res.data}>
                 <ChatIndex />
             </Provider>
             ,

@@ -12,9 +12,16 @@ var socket = io();
 class ChatIndex extends Component {
     constructor(props) {
         super(props);
+        console.log(props);
         socket.emit("ONLINE", {
-            userId: this.props.userId
+            userId: this.props.data.id
         });
+        this.props.data.friends.map((friend) => {
+            socket.emit("JOIN", {
+                id: friend.messageRoomId.toString()
+            });
+        });
+
         socket.on('CREATED_MESSAGE', (data) => {
             if (this.props.state.chat && this.props.state.chat.id === data.id) {
                 this.props.actions.newMessage(data)
@@ -48,14 +55,7 @@ class ChatIndex extends Component {
     }
 
     componentDidUpdate() {
-        if (this.props.state.online) {
-            this.props.state.online.friends.map((friend) => {
-                socket.emit("JOIN", {
-                    id: friend.messageRoomId.toString()
-                });
-            });
 
-        }
     }
 
     componentWillUnmount() {
