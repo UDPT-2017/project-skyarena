@@ -38,6 +38,7 @@ class ChatIndex extends Component {
         socket.emit("ONLINE", {
             userId: this.props.user.id
         });
+        socket.username = this.props.user.id;
         this.props.user.friends.map((friend) => {
             socket.emit("JOIN", {
                 id: friend.messageRoomId.toString()

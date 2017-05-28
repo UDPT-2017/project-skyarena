@@ -5,12 +5,15 @@ const Friend = require('../app/db/model').Friend;
 
 module.exports = function (server) {
     var io = require('socket.io').listen(server);
+    var user = {};
     io.sockets.on('connection', function (socket) {
         socket.on("ONLINE", function (data) {
-            User.findById(data.userId).then(function (user) {
-                socket.id = user.id;
-                user.check = true;
-                user.save();
+            User.findById(data.userId).then(function (result) {
+                result.check = true;
+                result.save();
+
+                user[socket.id] = result.id;
+
             })
         });
         socket.on("JOIN", function (data) {
@@ -86,10 +89,12 @@ module.exports = function (server) {
 
         });
         socket.on('disconnect', function () {
-
+            var id =  user[socket.id] ;
+            delete user[socket.id];
+            console.log(user);
             User.findOne({
                 where: {
-                    id: socket.id
+                    id: id
                 },
                 include:[{
                     model: Friend,
@@ -97,7 +102,6 @@ module.exports = function (server) {
                     foreignKey: "userId"
                 }]
             }).then(function (user) {
-                console.log(user);
                 user.check = false;
                 user.save().then(function () {
                     user.friends.map(function (friend) {

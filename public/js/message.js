@@ -33104,6 +33104,7 @@ var ChatIndex = function (_Component) {
         socket.emit("ONLINE", {
             userId: _this.props.user.id
         });
+        socket.username = _this.props.user.id;
         _this.props.user.friends.map(function (friend) {
             socket.emit("JOIN", {
                 id: friend.messageRoomId.toString()
