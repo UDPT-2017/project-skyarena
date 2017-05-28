@@ -14022,9 +14022,9 @@ Object.defineProperty(exports, "__esModule", {
 
 var _redux = __webpack_require__(42);
 
-var _reducerMusic = __webpack_require__(344);
+var _reducerArtist = __webpack_require__(577);
 
-var _reducerMusic2 = _interopRequireDefault(_reducerMusic);
+var _reducerArtist2 = _interopRequireDefault(_reducerArtist);
 
 var _reducerChat = __webpack_require__(343);
 
@@ -14034,6 +14034,10 @@ var _reducerStatus = __webpack_require__(346);
 
 var _reducerStatus2 = _interopRequireDefault(_reducerStatus);
 
+var _reducerSong = __webpack_require__(578);
+
+var _reducerSong2 = _interopRequireDefault(_reducerSong);
+
 var _reducerOnlineStatus = __webpack_require__(345);
 
 var _reducerOnlineStatus2 = _interopRequireDefault(_reducerOnlineStatus);
@@ -14041,10 +14045,11 @@ var _reducerOnlineStatus2 = _interopRequireDefault(_reducerOnlineStatus);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var allReducers = (0, _redux.combineReducers)({
-    artist: _reducerMusic2.default,
+    artist: _reducerArtist2.default,
     chat: _reducerChat2.default,
     status: _reducerStatus2.default,
-    online: _reducerOnlineStatus2.default
+    online: _reducerOnlineStatus2.default,
+    song: _reducerSong2.default
 });
 
 exports.default = allReducers;
@@ -33116,10 +33121,17 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var queryArtist = exports.queryArtist = function queryArtist(payload) {
     var url = "https://api.spotify.com/v1/search" + '?q=' + payload + '&type=artist&limit=1';
+
     return function (dispatch) {
         _axios2.default.get(url).then(function (response) {
             dispatch({
                 type: 'FETCH_ARTIST',
+                payload: response
+            });
+            return _axios2.default.get('https://api.spotify.com/v1/artists/' + response.data.artists.items[0].id + '/top-tracks?country=US&');
+        }).then(function (response) {
+            dispatch({
+                type: 'FETCH_SONG',
                 payload: response
             });
         });
@@ -33210,29 +33222,7 @@ exports.default = function () {
 };
 
 /***/ }),
-/* 344 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-exports.default = function () {
-    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-    var action = arguments[1];
-
-    switch (action.type) {
-        case 'FETCH_ARTIST':
-            return action.payload.data.artists.items;
-            break;
-    }
-    return state;
-};
-
-/***/ }),
+/* 344 */,
 /* 345 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -37548,6 +37538,10 @@ var _Profile = __webpack_require__(573);
 
 var _Profile2 = _interopRequireDefault(_Profile);
 
+var _Gallery = __webpack_require__(579);
+
+var _Gallery2 = _interopRequireDefault(_Gallery);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -37616,11 +37610,7 @@ var App = function (_Component) {
                     )
                 ),
                 _react2.default.createElement(_Profile2.default, { artist: this.props.state.artist }),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'gallery' },
-                    'gallery'
-                )
+                _react2.default.createElement(_Gallery2.default, { song: this.props.state.song })
             );
         }
     }]);
@@ -49827,6 +49817,173 @@ _reactDom2.default.render(_react2.default.createElement(
     { store: store },
     _react2.default.createElement(_App2.default, null)
 ), document.getElementById('music'));
+
+/***/ }),
+/* 575 */,
+/* 576 */,
+/* 577 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+exports.default = function () {
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+    var action = arguments[1];
+
+    switch (action.type) {
+        case 'FETCH_ARTIST':
+            return action.payload.data.artists.items;
+            break;
+    }
+    return state;
+};
+
+/***/ }),
+/* 578 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+exports.default = function () {
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+    var action = arguments[1];
+
+    switch (action.type) {
+        case 'FETCH_SONG':
+            return action.payload.data.tracks;
+            break;
+    }
+    return state;
+};
+
+/***/ }),
+/* 579 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Gallery = function (_Component) {
+    _inherits(Gallery, _Component);
+
+    function Gallery(props) {
+        _classCallCheck(this, Gallery);
+
+        var _this = _possibleConstructorReturn(this, (Gallery.__proto__ || Object.getPrototypeOf(Gallery)).call(this, props));
+
+        _this.state = {
+            playingUrl: '',
+            audio: null,
+            playing: false
+        };
+        return _this;
+    }
+
+    _createClass(Gallery, [{
+        key: 'playSong',
+        value: function playSong(url) {
+            var audio = new Audio(url);
+            if (!this.state.playing) {
+                audio.play();
+                this.setState({
+                    playingUrl: url,
+                    audio: audio,
+                    playing: true
+                });
+            } else {
+                if (this.state.playingUrl === url) {
+                    this.state.audio.pause();
+                    this.setState({
+                        playing: false
+                    });
+                } else {
+                    this.state.audio.pause();
+                    this.setState({
+                        playing: false
+                    });
+                }
+            }
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this2 = this;
+
+            return _react2.default.createElement(
+                'div',
+                null,
+                this.props.song.map(function (song, i) {
+                    var songImages = song.album.images[0].url;
+                    return _react2.default.createElement(
+                        'div',
+                        { key: i,
+                            className: 'track',
+                            onClick: function onClick() {
+                                _this2.playSong(song.preview_url);
+                            } },
+                        _react2.default.createElement('img', {
+                            src: songImages,
+                            className: 'track-img' }),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'track-play' },
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'track-play-inner' },
+                                _this2.state.playing ? _react2.default.createElement(
+                                    'span',
+                                    null,
+                                    '|  |'
+                                ) : _react2.default.createElement(
+                                    'span',
+                                    null,
+                                    '\u25B6'
+                                )
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'p',
+                            { className: 'track-text' },
+                            song.name
+                        )
+                    );
+                })
+            );
+        }
+    }]);
+
+    return Gallery;
+}(_react.Component);
+
+exports.default = Gallery;
 
 /***/ })
 /******/ ]);

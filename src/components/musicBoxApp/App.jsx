@@ -4,6 +4,7 @@ import * as actions from '../../actions/index'
 import  {bindActionCreators} from 'redux'
 import {connect}  from'react-redux';
 import Profile from './Profile.jsx'
+import Gallery from './Gallery.jsx';
 
 class App extends Component {
     constructor(props) {
@@ -44,9 +45,7 @@ class App extends Component {
                     </InputGroup>
                 </FormGroup>
                 <Profile artist={this.props.state.artist}/>
-                <div className="gallery">
-                    gallery
-                </div>
+                <Gallery song={this.props.state.song}/>
             </div>
         )
     }

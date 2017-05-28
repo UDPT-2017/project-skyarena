@@ -2,6 +2,7 @@ import axios from 'axios';
 
 export const queryArtist = (payload) => {
     const url = process.env.SPOTIFY_BASE_URL + '?q=' + payload + '&type=artist&limit=1';
+
     return function (dispatch) {
         axios
             .get(url)
@@ -9,8 +10,15 @@ export const queryArtist = (payload) => {
                 dispatch({
                     type: 'FETCH_ARTIST',
                     payload: response
+                });
+                return axios.get(`https://api.spotify.com/v1/artists/${response.data.artists.items[0].id}/top-tracks?country=US&`)
+            })
+            .then(function (response) {
+                dispatch({
+                    type: 'FETCH_SONG',
+                    payload: response
                 })
-            });
+            })
 
     };
 };

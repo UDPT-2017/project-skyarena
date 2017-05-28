@@ -1,14 +1,17 @@
 import {combineReducers} from 'redux';
-import MusicReducer from './reducer-music';
+import ArtistReducer from './reducer-artist';
 import ChatReducer from './reducer-chat';
 import StatusReducer from './reducer-status';
+import SongReducer from './reducer-song';
+
 import OnlineStatusReducer from './reducer-online-status';
 
 const allReducers = combineReducers({
-    artist: MusicReducer,
+    artist: ArtistReducer,
     chat: ChatReducer,
     status: StatusReducer,
-    online: OnlineStatusReducer
+    online: OnlineStatusReducer,
+    song: SongReducer
 });
 
 export default allReducers

@@ -13352,9 +13352,9 @@ Object.defineProperty(exports, "__esModule", {
 
 var _redux = __webpack_require__(42);
 
-var _reducerMusic = __webpack_require__(344);
+var _reducerArtist = __webpack_require__(577);
 
-var _reducerMusic2 = _interopRequireDefault(_reducerMusic);
+var _reducerArtist2 = _interopRequireDefault(_reducerArtist);
 
 var _reducerChat = __webpack_require__(343);
 
@@ -13364,6 +13364,10 @@ var _reducerStatus = __webpack_require__(346);
 
 var _reducerStatus2 = _interopRequireDefault(_reducerStatus);
 
+var _reducerSong = __webpack_require__(578);
+
+var _reducerSong2 = _interopRequireDefault(_reducerSong);
+
 var _reducerOnlineStatus = __webpack_require__(345);
 
 var _reducerOnlineStatus2 = _interopRequireDefault(_reducerOnlineStatus);
@@ -13371,10 +13375,11 @@ var _reducerOnlineStatus2 = _interopRequireDefault(_reducerOnlineStatus);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var allReducers = (0, _redux.combineReducers)({
-    artist: _reducerMusic2.default,
+    artist: _reducerArtist2.default,
     chat: _reducerChat2.default,
     status: _reducerStatus2.default,
-    online: _reducerOnlineStatus2.default
+    online: _reducerOnlineStatus2.default,
+    song: _reducerSong2.default
 });
 
 exports.default = allReducers;
@@ -31203,10 +31208,17 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var queryArtist = exports.queryArtist = function queryArtist(payload) {
     var url = "https://api.spotify.com/v1/search" + '?q=' + payload + '&type=artist&limit=1';
+
     return function (dispatch) {
         _axios2.default.get(url).then(function (response) {
             dispatch({
                 type: 'FETCH_ARTIST',
+                payload: response
+            });
+            return _axios2.default.get('https://api.spotify.com/v1/artists/' + response.data.artists.items[0].id + '/top-tracks?country=US&');
+        }).then(function (response) {
+            dispatch({
+                type: 'FETCH_SONG',
                 payload: response
             });
         });
@@ -31297,29 +31309,7 @@ exports.default = function () {
 };
 
 /***/ }),
-/* 344 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-exports.default = function () {
-    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-    var action = arguments[1];
-
-    switch (action.type) {
-        case 'FETCH_ARTIST':
-            return action.payload.data.artists.items;
-            break;
-    }
-    return state;
-};
-
-/***/ }),
+/* 344 */,
 /* 345 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -47611,6 +47601,52 @@ $(function () {
 /***/ (function(module, exports) {
 
 /* (ignored) */
+
+/***/ }),
+/* 577 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+exports.default = function () {
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+    var action = arguments[1];
+
+    switch (action.type) {
+        case 'FETCH_ARTIST':
+            return action.payload.data.artists.items;
+            break;
+    }
+    return state;
+};
+
+/***/ }),
+/* 578 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+exports.default = function () {
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+    var action = arguments[1];
+
+    switch (action.type) {
+        case 'FETCH_SONG':
+            return action.payload.data.tracks;
+            break;
+    }
+    return state;
+};
 
 /***/ })
 /******/ ]);
