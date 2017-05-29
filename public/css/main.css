@@ -5,6 +5,11 @@
 .session{
     margin-top: 5px;
 }
+.session-name{
+    color: azure;
+    padding-right: 15px;
+    padding-top: 8px
+}
 .weather-icon{
     height: 35px;
     width: 60px;
@@ -13,4 +18,8 @@
     vertical-align: top;
     margin-top: 13px;
     margin-right: 5px;
+}
+.center{
+    margin:auto;
+    text-align: center;
 }

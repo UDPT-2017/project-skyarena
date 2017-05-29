@@ -17,8 +17,14 @@ module.exports = function (app) {
             failureFlash: true
         }), controllers.user.login)
         .post('/logout', controllers.user.logout)
-        .get('/login/facebook/callback', passport.authenticate('facebook', {failureRedirect: '/login', scope:['email']}), controllers.user.loginFacebook)
-        .get('/login/facebook', passport.authenticate('facebook'));
+        .get('/login/facebook/callback', passport.authenticate('facebook', {
+            failureRedirect: '/login',
+            scope: ['email']
+        }), controllers.user.loginFacebook)
+        .get('/login/facebook', passport.authenticate('facebook'))
+        .post('/edit',multipartMiddleware, controllers.user.update)
+        .get('/premium',controllers.user.addPremium)
+        .get('/edit', controllers.user.edit);
     app.use('/user', userRouter);
     var aboutRouter = Router().get('/', controllers.about.index);
     var friendRouter = Router()
@@ -41,4 +47,5 @@ module.exports = function (app) {
     app.use('/friend', Authentication, friendRouter);
     app.use('/message', Authentication, messageRouter);
     app.use('/musicBox', musicBoxRouter);
+
 };

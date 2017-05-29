@@ -46,16 +46,28 @@
                 </ul>
                 {{#if session }}
                     <ul class="nav navbar-nav navbar-right session">
-                        <form id="form-logout" action="/user/logout" method="post">
-                            <img src="{{session.avatar}}" class="small-avatar">
-                            <label
-                                    style="color: azure">{{session.name}}</label>
+                        <li>
 
-                            <input id="logout" type="submit"
-                                   class="btn btn-primary"
-                                   value="Logout">
-                        </form>
+                                <img src="{{session.avatar}}" class="small-avatar">
+                                <label
+                                        class="session-name">{{session.name}}</label>
 
+
+                            </form>
+                        </li>
+
+                        <li>
+                            <form id="form-logout" action="/user/edit" method="get">
+                                <button class="btn btn-primary">Edit</button>
+                            </form>
+                        </li>
+                        <li>
+                            <form id="form-logout" action="/user/logout" method="post">
+                                <input id="logout" type="submit"
+                                       class="btn btn-danger"
+                                       value="Logout">
+                            </form>
+                        </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <canvas id="icon" class="weather-icon"></canvas>
@@ -70,8 +82,6 @@
                         <li id="register"><a href="/user/register">register</a></li>
                     </ul>
                 {{/if}}
-
-
             </div>
         </div>
     </nav>

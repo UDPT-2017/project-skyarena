@@ -60,6 +60,17 @@ var User = sequelize.define('user', {
     check: {
         type: SQ.BOOLEAN,
         defaultValue: false
+    },
+    premium: {
+        type: SQ.DATE
+    }
+}, {
+    instanceMethods:{
+        paypal_url: function () {
+            var url = `https://www.sandbox.paypal.com/cgi-bin/webscr?`;
+            url += encodeURIComponent(`business=idkwayta2-facilitator@gmail.com&&cmd=_cart&&invoice=test`);
+            console.log(url)
+        }
     }
 });
 

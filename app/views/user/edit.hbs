@@ -1,0 +1,41 @@
+<h2 class="center">
+    User page
+</h2>
+<form class="col-xs-6 col-xs-offset-3" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="email">Email address:</label>
+        <input type="email" class="form-control" id="email" name="email" value={{session.email}} readonly>
+    </div>
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" class="form-control" id="name" name="name" value={{session.name}}>
+    </div>
+    <div class="form-group">
+        <label for="pwd">New password:</label>
+        <input id="pwd" type="password" class="form-control" name="newPassword" value="">
+    </div>
+    <div class="form-group">
+        <label for="pwd">Current password:</label>
+        <input id="pwd" type="password" class="form-control" name="oldPassword1">
+    </div>
+    <div class="form-group">
+        <label for="pwd">Confirm password:</label>
+        <input id="pwd" type="password" class="form-control" name="oldPassword2">
+    </div>
+    <div class="form-group">
+        <label for="inputAvatar">New Avatar:</label>
+        <input name="avatar" type="file" id="inputAvatar">
+    </div>
+    <br>
+
+
+    <div class="center">
+        <button type="submit" class=" btn btn-info">Submit</button>
+    </div>
+    <div class="form-group">
+        <label >Premium end on:{{session.premium}}</label>
+        <a href="/user/premium" class="btn btn-success">Add 30 days</a>
+    </div>
+</form>
+
+<br>
