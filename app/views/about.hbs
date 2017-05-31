@@ -1,1 +1,74 @@
-About
+<style>
+    #map {
+        width: 500px;
+        height: 400px;
+        margin: auto;
+        margin-top: 20px;
+        text-align: center;
+    }
+</style>
+<div class="main">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active">About</li>
+    </ol>
+
+    <div class="row">
+      <div class="col-xs-4">
+          <div style="margin-left:100px">
+              <b>Họ tên : Trần Thanh Phán</b>
+              <p>MSSV : 1312415 </p>
+              <p>Tài khoản github : 1312415</p>
+              <p>Emai : 1312415@student.hcmus.edu.vn</p>
+          </div>
+      </div>
+        <div class="col-xs-4">
+            <div style="margin-left:100px">
+                <b>Họ tên : Phùng Hải Nguyên</b>
+                <p>MSSV : 1312393 </p>
+                <p>Tài khoản github : 1312393</p>
+                <p>Emai : 1312393@student.hcmus.edu.vn</p>
+            </div>
+        </div>
+        <div class="col-xs-4">
+            <div style="margin-left:100px">
+                <b>Họ tên : Lê Quốc Tấn Lộc </b>
+                <p>MSSV : 1312340 </p>
+                <p>Tài khoản github : 1312340</p>
+                <p>Emai : 1312340@student.hcmus.edu.vn</p>
+            </div>
+        </div>
+    </div>
+    <div style="margin-top: 20px; margin-left:50px">
+        <b> Địa chỉ liên lạc với các thành viên : </b>
+    </div>
+    <div id="map"></div>
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+</script>
+<script>
+    function initMap() {
+        var mapDiv = document.getElementById('map');
+        var map = new google.maps.Map(mapDiv, {
+            center: {
+                lat: 10.762637,
+                lng: 106.682369
+            },
+            zoom: 17
+        });
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>
