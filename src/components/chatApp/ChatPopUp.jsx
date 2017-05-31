@@ -47,8 +47,18 @@ class ChatPopUp extends Component {
                             {data.session.name}
                         </div>
                         <div className="popup-head-right pull-right">
-                            <button id="removeClass" className="chat-header-button pull-right" type="button"><i
-                                className="glyphicon glyphicon-off"></i></button>
+                            <button
+                                id="removeClass"
+                                className="chat-header-button pull-right"
+                                type="button"
+                                onClick={()=>{
+                                    this.props.chatProps.actions.closeChatPopUp();
+                                }}
+                            >
+                                <i className="glyphicon glyphicon-off">
+
+                                </i>
+                            </button>
                         </div>
                     </div>
                     <div className="popup-messages" id="messagesInsert">
@@ -69,7 +79,9 @@ class ChatPopUp extends Component {
                               rows="15"
                               cols="40"
                               onKeyPress={this.handlesubmit.bind(this)}
-                              className="message"></textarea>
+                              className="message">
+
+                    </textarea>
                     </div>
                 </div>
             )

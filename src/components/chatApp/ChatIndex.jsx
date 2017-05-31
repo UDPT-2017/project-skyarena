@@ -83,7 +83,7 @@ class ChatIndex extends Component {
                                                 var data = {
                                                     id: friend.messageRoomId,
                                                     socket: socket,
-                                                    props: this.props.state,
+                                                    user: this.props.state.online.id,
                                                     friend: friend.toUserId
                                                 };
                                                 this.props.actions.fetchChatRoom(data);
@@ -114,7 +114,7 @@ class ChatIndex extends Component {
                         <StatusIndex statuses={this.props.state.status} chatProps={this.props} socket={socket}/>
                     </div>
                     <div>
-                        <ChatPopUp data={this.props.state.chat} socket={socket}/>
+                        <ChatPopUp data={this.props.state.chat} socket={socket} chatProps={this.props}/>
                     </div>
                 </div>
 

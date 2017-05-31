@@ -38,27 +38,31 @@ Phần mô tả đặt vào đây
 * [x] Tìm kiếm (1312415)
 
 ### Xử lý lỗi
-* [ ] Xử lý lỗi trong cùng trang web (MSSV1)
-* [ ] Xử lý lỗi dùng trang web riêng (MSSV1)
-   * [ ] 401 (MSSV1)
-   * [ ] 404 (MSSV1)
-   * [ ] 500 (MSSV1)
+* [x] Xử lý lỗi trong cùng trang web (1312415)
+* [x] Xử lý lỗi dùng trang web riêng (1312415)
+   * [x] 401 (1312415)
+   * [x] 404 (1312415)
+   * [x] 500 (1312415)
 
 ### Tương tác API khác
 Liệt kê các API nhóm đã sử dụng được ở đây
-* [ ] Facebook API: mô tả (MSSV1)
-* [ ] Google API: mô tả (MSSV1)
-* [ ] ...
+* [x] Facebook API: Login (1312415)
+* [x] Google API: Login (1312415)
+* [x] geoip-db API: get user longitude and latitude(1312415)
+* [x] darksky: get current weather with longitude and latitude(1312415)
+* [x] paypal: to checkout (1312415)
+* [x] SPOTIFY: get songs and artists(1312415)
+* [x] cloudinary: to upload images to cloud(1312415)
 
 ## Lập trình client
-* [ ] Kiểm tra dữ liệu (MSSV1)
-* [x] Animation (MSSV1)
-* [x] Thao tác DOM (MSSV1)
-* [x] AJAX (MSSV1)
+* [x] Kiểm tra dữ liệu (1312415)
+* [x] Animation (1312415)
+* [x] Thao tác DOM (1312415)
+* [x] AJAX (1312415)
 
 ## Bảo mật
-* [x] Chứng thực (MSSV1)
-* [x] Phân quyền sử dụng một số trang web với nhiều vai trò khác nhau (MSSV1)
+* [x] Chứng thực (1312415)
+* [x] Phân quyền sử dụng một số trang web với nhiều vai trò khác nhau (1312415)
    * [x] Không cho phép thao tác vào trang web khi không có quyền (MSSV1)
    * [ ] Thể hiện các chức năng khác nhau trên cùng giao diện khi người dùng có quyền khác nhau (MSSV1)
    * [ ] Thể hiện lỗi khi không truy xuất được trang khi không có quyền (MSSV1)

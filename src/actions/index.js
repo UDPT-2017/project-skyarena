@@ -32,9 +32,9 @@ export const fetchChatRoom = (payload) => {
                     type: 'FETCH_CHAT_ROOM',
                     payload: response
                 });
-
+                console.log(payload);
                 payload.socket.emit("LOAD_CHAT_ROOM",{
-                    user: payload.props.online.id,
+                    user: payload.user,
                     friend: payload.friend,
                     room: payload.id.toString()
                 });
@@ -75,4 +75,12 @@ export const fetchOnlineStatus = ()=>{
             });
 
     };
+};
+export const closeChatPopUp = ()=>{
+    return function (dispatch) {
+        dispatch({
+            type: "CLOSE_CHAT_POP_UP",
+            payload: null
+        })
+    }
 };

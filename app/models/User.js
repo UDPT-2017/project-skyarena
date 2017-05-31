@@ -21,18 +21,7 @@ var User = sequelize.define('user', {
 
     },
     name: {
-        type: SQ.STRING,
-        allowNull: {
-            args: false,
-            msg: 'Must have a name '
-        }
-        ,
-        validate: {
-            len: {
-                args: [1],
-                msg: 'Must have a name'
-            }
-        }
+        type: SQ.STRING
 
     },
     avatar: {
@@ -55,6 +44,9 @@ var User = sequelize.define('user', {
         }
     },
     facebookId: {
+        type: SQ.STRING
+    },
+    googleId: {
         type: SQ.STRING
     },
     check: {

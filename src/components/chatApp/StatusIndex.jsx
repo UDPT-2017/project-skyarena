@@ -14,7 +14,6 @@ class StatusIndex extends Component {
         return (
             <div>
                 {this.props.statuses.map((status, index) => {
-                    console.log(status);
                     return (
                         <div key={index}>
                             <a
@@ -23,7 +22,7 @@ class StatusIndex extends Component {
                                      var data = {
                                          id: status.inMessageRoomId,
                                          socket: this.props.socket,
-                                         props: this.props.chatProps,
+                                         user: this.props.chatProps.state.online.id,
                                          friend: status.from.id
                                      };
                                      this.props.chatProps.actions.fetchChatRoom(data);

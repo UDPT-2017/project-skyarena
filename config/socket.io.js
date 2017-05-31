@@ -89,25 +89,28 @@ module.exports = function (server) {
 
         });
         socket.on('disconnect', function () {
-            var id =  user[socket.id] ;
+            var id = user[socket.id];
             delete user[socket.id];
-            console.log(user);
+
             User.findOne({
                 where: {
                     id: id
                 },
-                include:[{
+                include: [{
                     model: Friend,
                     as: "friends",
                     foreignKey: "userId"
                 }]
             }).then(function (user) {
-                user.check = false;
-                user.save().then(function () {
-                    user.friends.map(function (friend) {
-                        socket.broadcast.to(friend.messageRoomId.toString()).emit('UPDATE_USER_ONLINE');
-                    })
-                });
+                if (user) {
+                    console.log(user.name);
+                    user.check = false;
+                    user.save().then(function () {
+                        user.friends.map(function (friend) {
+                            socket.broadcast.to(friend.messageRoomId.toString()).emit('UPDATE_USER_ONLINE');
+                        })
+                    });
+                }
             })
         })
 

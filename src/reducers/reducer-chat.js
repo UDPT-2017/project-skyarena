@@ -18,6 +18,8 @@ export default function (state = null, action) {
             });
             return newstate;
             break;
+        case 'CLOSE_CHAT_POP_UP':
+            return null;
         default:
             return state
     }

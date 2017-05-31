@@ -22,6 +22,12 @@ module.exports = function (app) {
             scope: ['email']
         }), controllers.user.loginFacebook)
         .get('/login/facebook', passport.authenticate('facebook'))
+
+        .get('/login/google/callback', passport.authenticate('google', {
+            failureRedirect: '/login'
+        }), controllers.user.loginGoogle)
+        .get('/login/google', passport.authenticate('google'))
+
         .post('/edit',multipartMiddleware, controllers.user.update)
         .get('/premium',controllers.user.addPremium)
         .get('/edit', controllers.user.edit);
