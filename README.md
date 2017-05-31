@@ -26,16 +26,16 @@ Phần mô tả đặt vào đây
 
 ## Lập trình server
 ### MVC
-* [ ] MVC (MSSV1)
-* [ ] Config (MSSV1)
-* [ ] REST routing (MSSV1)
-* [ ] Layout & partial (MSSV1)
+* [x] MVC (1312415)
+* [x] Config (1312415)
+* [x] REST routing (1312415)
+* [x] Layout & partial (1312415)
 
 ### Lập trình dữ liệu
-* [ ] Thêm (MSSV1)
-* [ ] Xóa (MSSV1)
-* [ ] Sửa (MSSV1)
-* [ ] Tìm kiếm (MSSV1)
+* [x] Thêm (1312415)
+* [x] Xóa (1312415)
+* [x] Sửa (1312415)
+* [x] Tìm kiếm (1312415)
 
 ### Xử lý lỗi
 * [ ] Xử lý lỗi trong cùng trang web (MSSV1)
@@ -52,14 +52,14 @@ Liệt kê các API nhóm đã sử dụng được ở đây
 
 ## Lập trình client
 * [ ] Kiểm tra dữ liệu (MSSV1)
-* [ ] Animation (MSSV1)
-* [ ] Thao tác DOM (MSSV1)
-* [ ] AJAX (MSSV1)
+* [x] Animation (MSSV1)
+* [x] Thao tác DOM (MSSV1)
+* [x] AJAX (MSSV1)
 
 ## Bảo mật
-* [ ] Chứng thực (MSSV1)
-* [ ] Phân quyền sử dụng một số trang web với nhiều vai trò khác nhau (MSSV1)
-   * [ ] Không cho phép thao tác vào trang web khi không có quyền (MSSV1)
+* [x] Chứng thực (MSSV1)
+* [x] Phân quyền sử dụng một số trang web với nhiều vai trò khác nhau (MSSV1)
+   * [x] Không cho phép thao tác vào trang web khi không có quyền (MSSV1)
    * [ ] Thể hiện các chức năng khác nhau trên cùng giao diện khi người dùng có quyền khác nhau (MSSV1)
    * [ ] Thể hiện lỗi khi không truy xuất được trang khi không có quyền (MSSV1)
 
