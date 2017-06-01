@@ -10,11 +10,23 @@ var friendController = {
             host: process.env.HOST
         })
     },
+    getCount: function (req, res) {
+        User.findAll({
+            where: {
+                id: {
+                    $ne: req.user.id
+                }
+            }
+        }).then(function (user) {
+            res.send({count: user.length});
+        })
+    },
     getFriend: function (req, res) {
         var friendList = [];
         var userFriend = [];
         var requestingFriend = [];
         var requestedFriend = [];
+        var offset = req.query.page ;
         Friend.findAll({
             where: {
                 userId: req.user.id,
@@ -49,7 +61,9 @@ var friendController = {
                     id: {
                         $ne: req.user.id
                     }
-                }
+                },
+                limit: 9,
+                offset: parseInt(offset)*9
             })
         }).then(function (users) {
             users.forEach(function (user) {

@@ -5,7 +5,8 @@ dotenv.load();
 var config = {
     entry: {
         music: __dirname +"/src/index.jsx",
-        message: __dirname +"/src/index2.jsx"
+        message: __dirname +"/src/index2.jsx",
+        friend: __dirname +"/src/index3.jsx"
     },
     output: {
         path: __dirname + "/public/js/",
@@ -25,7 +26,7 @@ var config = {
     plugins:[
         new webpack.DefinePlugin({
             'process.env.SPOTIFY_BASE_URL': JSON.stringify(process.env.SPOTIFY_BASE_URL),
-            'process.env.URL': JSON.stringify(process.env.URL)
+            'process.env.SPOTIFY_AUTHORIZATION': JSON.stringify(process.env.SPOTIFY_AUTHORIZATION)
         })
     ]
 };

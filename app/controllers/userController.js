@@ -79,12 +79,11 @@ var userController = {
             if (req.query.token && req.query.PayerID) {
                 paypal.detail(req.query.token, req.query.PayerID, function (err, data, invoiceNumber, price) {
                     if (err) {
-                        req.flash("info", "something wrong");
-                        res.redirect('/user/edit')
+                        next(err)
                     }
                     if (data.success) {
                         Premium.find({
-                            where: {id: invoiceNumber},
+                            where: {id: invoiceNumber.slice(0, -1)},
                             include: [{
                                 model: User,
                                 as: "user",
@@ -122,7 +121,14 @@ var userController = {
 
                 });
             } else {
-                res.render('user/edit');
+                if(req.user.premium){
+                    res.render('user/edit',{
+                        premium: req.user.premium.toISOString().substring(0, 10)
+                    });
+                }else {
+                    res.render('user/edit');
+                }
+
             }
         } catch (e) {
             next(e)
@@ -135,11 +141,6 @@ var userController = {
                 var err = new Error("Need to login to edit user");
                 err.status = 401;
                 next(err);
-                return;
-            }
-            if (req.body.oldPassword1 !== req.body.oldPassword2) {
-                req.flash('info', 'please reconfirm your current password correctly');
-                res.redirect('/user/edit');
                 return;
             }
             User.findOne({where: {email: req.body.email}}).then(function (user) {
@@ -190,7 +191,7 @@ var userController = {
         var premium = Premium.build({userId: req.user.id});
         premium.save().then(function () {
             console.log(premium.id.toString());
-            paypal.pay(premium.id.toString(), 10, 'PREMIUM', 'USD', true, function (err, url) {
+            paypal.pay(premium.id.toString() + "p", 10, 'PREMIUM', 'USD', true, function (err, url) {
                 if (err) {
                     next(err);
                     return;

@@ -5,15 +5,24 @@ export const queryArtist = (payload) => {
 
     return function (dispatch) {
         axios
-            .get(url)
+            .get(url,
+                {
+                    'headers': {
+                        'Authorization': process.env.SPOTIFY_AUTHORIZATION
+                    }
+                })
             .then(function (response) {
-                dispatch({
-                    type: 'FETCH_ARTIST',
-                    payload: response
-                });
-                return axios.get(`https://api.spotify.com/v1/artists/${response.data.artists.items[0].id}/top-tracks?country=US&`)
-            })
+                    dispatch({
+                        type: 'FETCH_ARTIST',
+                        payload: response
+                    });
+                    return axios.get(
+                        `https://api.spotify.com/v1/artists/${response.data.artists.items[0].id}/top-tracks?country=US&`,
+                        {'headers': {'Authorization': process.env.SPOTIFY_AUTHORIZATION}})
+                }
+            )
             .then(function (response) {
+                console.log(response);
                 dispatch({
                     type: 'FETCH_SONG',
                     payload: response
@@ -23,7 +32,7 @@ export const queryArtist = (payload) => {
     };
 };
 export const fetchChatRoom = (payload) => {
-    const url =  '/message/' + payload.id.toString();
+    const url = '/message/' + payload.id.toString();
     return function (dispatch) {
         axios
             .get(url)
@@ -33,7 +42,7 @@ export const fetchChatRoom = (payload) => {
                     payload: response
                 });
                 console.log(payload);
-                payload.socket.emit("LOAD_CHAT_ROOM",{
+                payload.socket.emit("LOAD_CHAT_ROOM", {
                     user: payload.user,
                     friend: payload.friend,
                     room: payload.id.toString()
@@ -62,7 +71,7 @@ export const fetchStatus = () => {
 
     };
 };
-export const fetchOnlineStatus = ()=>{
+export const fetchOnlineStatus = () => {
     const url = '/message/get';
     return function (dispatch) {
         axios
@@ -76,11 +85,29 @@ export const fetchOnlineStatus = ()=>{
 
     };
 };
-export const closeChatPopUp = ()=>{
+export const closeChatPopUp = () => {
     return function (dispatch) {
         dispatch({
             type: "CLOSE_CHAT_POP_UP",
             payload: null
+        })
+    }
+};
+export const fetchFriend = (page) => {
+    return function (dispatch) {
+        axios.get('/friend/get?page=' + page.toString()).then((response) => {
+            axios.get('/friend/count').then((response2) => {
+                dispatch({
+                    type: "GET_FRIEND",
+                    payload: {
+                        friends: response.data,
+                        count: response2.data,
+                        page
+                    }
+                })
+
+            })
+
         })
     }
 };

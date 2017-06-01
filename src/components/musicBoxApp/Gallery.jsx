@@ -37,6 +37,7 @@ class Gallery extends Component {
     render() {
         return (
             <div>
+
                 {
                     this.props.song.map((song, i) => {
                         const songImages = song.album.images[0].url;

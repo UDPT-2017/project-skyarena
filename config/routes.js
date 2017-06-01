@@ -38,6 +38,7 @@ module.exports = function (app) {
         .get('/remove', controllers.friend.removeFriend)
         .get('/get', controllers.friend.getFriend)
         .get('/accept', controllers.friend.acceptFriend)
+        .get('/count', controllers.friend.getCount)
         .get('/', controllers.friend.index);
     var messageRouter = Router()
         .get('/', controllers.message.index)
