@@ -40,9 +40,11 @@ class ChatIndex extends Component {
         });
         socket.username = this.props.user.id;
         this.props.user.friends.map((friend) => {
-            socket.emit("JOIN", {
-                id: friend.messageRoomId.toString()
-            });
+            if (friend.check) {
+                socket.emit("JOIN", {
+                    id: friend.messageRoomId.toString()
+                });
+            }
         });
     }
 
@@ -75,7 +77,6 @@ class ChatIndex extends Component {
                         {
                             this.props.state.online.friends.map((friend) => {
                                 if (friend.check) {
-
                                     var link = "room-" + friend.messageRoomId.toString();
                                     return (
                                         <div key={link}>

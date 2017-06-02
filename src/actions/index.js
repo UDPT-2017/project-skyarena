@@ -93,16 +93,100 @@ export const closeChatPopUp = () => {
         })
     }
 };
-export const fetchFriend = (page) => {
+export const removeFriend = (id, page, query)=>{
     return function (dispatch) {
-        axios.get('/friend/get?page=' + page.toString()).then((response) => {
-            axios.get('/friend/count').then((response2) => {
+        dispatch({
+            type: "WAITING_FRIEND"
+        });
+        axios.get('/friend/remove?id=' + id.toString()).then(function (res) {
+            axios.get('/friend/get?page=' + page.toString()).then((response) => {
+                axios.get('/friend/count').then((response2) => {
+                    dispatch({
+                        type: "GET_FRIEND",
+                        payload: {
+                            friends: response.data,
+                            count: parseInt(response2.data.count),
+                            page,
+                            query,
+                            waiting: false
+                        }
+                    })
+
+                })
+
+            })
+        })
+    }
+
+};
+export const addFriend = (id, page, query)=>{
+    return function (dispatch) {
+        dispatch({
+            type: "WAITING_FRIEND"
+        });
+        axios.get('/friend/add?id=' + id.toString()).then(function (res) {
+            axios.get('/friend/get?page=' + page.toString()).then((response) => {
+                axios.get('/friend/count').then((response2) => {
+                    dispatch({
+                        type: "GET_FRIEND",
+                        payload: {
+                            friends: response.data,
+                            count: parseInt(response2.data.count),
+                            page,
+                            query,
+                            waiting: false
+                        }
+                    })
+
+                })
+
+            })
+        })
+    }
+
+};
+export const acceptFriend = (id, page, query)=>{
+    return function (dispatch) {
+        dispatch({
+            type: "WAITING_FRIEND"
+        });
+        axios.get('/friend/accept?id=' + id.toString()).then(function (res) {
+            axios.get('/friend/get?page=' + page.toString()).then((response) => {
+                axios.get('/friend/count').then((response2) => {
+                    dispatch({
+                        type: "GET_FRIEND",
+                        payload: {
+                            friends: response.data,
+                            count: parseInt(response2.data.count),
+                            page,
+                            query,
+                            waiting: false
+                        }
+                    })
+
+                })
+
+            })
+        })
+    }
+
+};
+
+export const fetchFriend = (page, query) => {
+    return function (dispatch) {
+        dispatch({
+            type: "WAITING_FRIEND"
+        });
+        axios.get('/friend/get?page=' + page.toString() + "&query=" + query).then((response) => {
+            axios.get('/friend/count?query=' + query).then((response2) => {
                 dispatch({
                     type: "GET_FRIEND",
                     payload: {
                         friends: response.data,
-                        count: response2.data,
-                        page
+                        count: parseInt(response2.data.count),
+                        page,
+                        query,
+                        waiting: false
                     }
                 })
 

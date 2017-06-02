@@ -103,11 +103,12 @@ module.exports = function (server) {
                 }]
             }).then(function (user) {
                 if (user) {
-                    console.log(user.name);
                     user.check = false;
                     user.save().then(function () {
                         user.friends.map(function (friend) {
-                            socket.broadcast.to(friend.messageRoomId.toString()).emit('UPDATE_USER_ONLINE');
+                            if (friend.check) {
+                                socket.broadcast.to(friend.messageRoomId.toString()).emit('UPDATE_USER_ONLINE');
+                            }
                         })
                     });
                 }

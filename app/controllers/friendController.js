@@ -15,6 +15,9 @@ var friendController = {
             where: {
                 id: {
                     $ne: req.user.id
+                },
+                name: {
+                    $like: '%' + req.query.query + '%'
                 }
             }
         }).then(function (user) {
@@ -27,6 +30,7 @@ var friendController = {
         var requestingFriend = [];
         var requestedFriend = [];
         var offset = req.query.page ;
+        var query = req.query.query;
         Friend.findAll({
             where: {
                 userId: req.user.id,
@@ -56,14 +60,18 @@ var friendController = {
             friends.forEach(function (friend) {
                 requestedFriend.push(friend.userId);
             });
+
             return User.findAll({
                 where: {
                     id: {
                         $ne: req.user.id
+                    },
+                    name: {
+                        $like: '%' + query + '%'
                     }
                 },
-                limit: 9,
-                offset: parseInt(offset)*9
+                limit: 18,
+                offset: parseInt(offset)*18
             })
         }).then(function (users) {
             users.forEach(function (user) {
