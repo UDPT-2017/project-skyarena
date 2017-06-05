@@ -48,11 +48,16 @@ module.exports = function (app) {
         .get('/:id', controllers.message.chatRoom);
     var musicBoxRouter = Router()
         .get('/', controllers.musicBox.index);
+    var postRouter = Router()
+        .get('/', controllers.post.index)
+        .get('/new', controllers.post.loadPost)
+        .post('/new', controllers.post.createPost);
     app.use('/', indexRouter);
     app.use('/user', userRouter);
     app.use('/about', Authentication, aboutRouter);
     app.use('/friend', Authentication, friendRouter);
     app.use('/message', Authentication, messageRouter);
     app.use('/musicBox', musicBoxRouter);
+    app.use('/post', postRouter);
 
 };

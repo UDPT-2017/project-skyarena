@@ -4,7 +4,7 @@ const MessageRoom = require('../models/MessageRoom');
 const Message = require('../models/Message');
 const MessageStatus = require('../models/MessageStatus');
 const Premium = require('../models/Premium');
-
+const Post = require('../models/Post');
 
 
 User.sync()
@@ -35,7 +35,12 @@ User.sync()
     .then(function () {
         Premium.belongsTo(User,{as: "user", foreignKey: "userId"});
         User.hasMany(Premium,{as:"premiumNotifications", foreignKey: "userId"});
-        Premium.sync()
+        Premium.sync();
+    })
+    .then(function () {
+        Post.belongsTo(User,{as: "user", foreignKey: "userId"});
+        User.hasMany(Post,{as:"post", foreignKey: "userId"});
+        Post.sync();
     })
 ;
 module.exports = {
@@ -44,6 +49,6 @@ module.exports = {
     MessageRoom,
     Message,
     MessageStatus,
-    Premium
+    Premium,
+    Post
 };
-
