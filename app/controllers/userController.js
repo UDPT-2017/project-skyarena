@@ -43,11 +43,16 @@ var userController = {
                         return res.redirect('/');
                     });
                 }).catch(function (e) {
-                    for (var i = 0; i < e.errors.length; i++) {
-                        req.flash('info', e.errors[i].message);
+                    if(e.errors.length){
+                        for (var i = 0; i < e.errors.length; i++) {
+                            req.flash('info', e.errors[i].message);
+                        }
+
+                        res.redirect('/user/register');
+                    }else{
+                        next(e);
                     }
 
-                    res.redirect('/user/register');
                 })
             });
         } catch (e) {
