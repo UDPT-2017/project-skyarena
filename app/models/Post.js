@@ -1,7 +1,7 @@
 const sequelize = require('../db/connection');
 const SQ = require('sequelize');
 
-var Post = sequelize.define('user', {
+var Post = sequelize.define('post', {
     title: {
         type: SQ.STRING,
         allowNull: {
