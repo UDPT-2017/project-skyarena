@@ -52,6 +52,14 @@ module.exports = function (app) {
         .get('/', controllers.post.index)
         .get('/new', controllers.post.loadPost)
         .post('/new', controllers.post.createPost);
+     var merchantRouter = Router()
+        .get('/register', controllers.merchant.loadRegister)
+        .post('/register', multipartMiddleware, controllers.merchant.register)
+        .get('/', controllers.item.index)
+        .get('/get', controllers.item.getItem)
+        .post('/add',multipartMiddleware, controllers.item.addItem)
+        .get('/remove', controllers.item.removeItem);
+    
     app.use('/', indexRouter);
     app.use('/user', userRouter);
     app.use('/about', Authentication, aboutRouter);
@@ -59,5 +67,6 @@ module.exports = function (app) {
     app.use('/message', Authentication, messageRouter);
     app.use('/musicBox', musicBoxRouter);
     app.use('/post', postRouter);
+    app.use('/merchant', Authentication, merchantRouter);
 
 };
