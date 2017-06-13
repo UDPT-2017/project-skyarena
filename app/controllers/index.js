@@ -4,7 +4,12 @@ module.exports = {
     about: require('./aboutController'),
     friend: require('./friendController'),
     message: require('./messageController'),
-    video: require('./videoController'),
+
+    musicBox: require('./musicBoxController'),
     post: require('./postController'),
+    merchant: require('./merchantController'),
+    item: require('./itemController'),
+    video: require('./videoController'),
     videoAPI: require('./videoAPIController')
+
 };
