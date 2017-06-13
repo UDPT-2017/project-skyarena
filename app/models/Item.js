@@ -1,7 +1,7 @@
 const sequelize = require('../db/connection');
 const SQ = require('sequelize');
 
-var Merchant = sequelize.define('merchant', {
+var Item = sequelize.define('item', {
 	 name: {
         type: SQ.STRING,
         allowNull: {
@@ -29,4 +29,4 @@ var Merchant = sequelize.define('merchant', {
    
 });
 
-module.exports = Merchant;
+module.exports = Item;
