@@ -70,7 +70,6 @@ module.exports = function(app) {
     .get("/", controllers.post.index)
     .get("/new", controllers.post.loadPost)
     .post("/new", controllers.post.createPost);
-<<<<<<< HEAD
   var merchantRouter = Router()
        // .get('/register', controllers.merchant.loadRegister)
         .post('/register', multipartMiddleware, controllers.merchant.register)
@@ -79,15 +78,7 @@ module.exports = function(app) {
         .post('/add',multipartMiddleware, controllers.item.addItem)
         .get('/remove', controllers.item.removeItem);
 
-=======
-   var merchantRouter = Router()
-        .get('/register', controllers.merchant.loadRegister)
-        .post('/register', multipartMiddleware, controllers.merchant.register)
-        .get('/', controllers.item.index)
-        .get('/get', controllers.item.getItem)
-        .post('/add',multipartMiddleware, controllers.item.addItem)
-        .get('/remove', controllers.item.removeItem);
->>>>>>> dddd6949fca3777115e95ad304e7b2bfb2d29791
+
   app.use("/", indexRouter);
   app.use("/user", userRouter);
   app.use("/about", Authentication, aboutRouter);
@@ -97,8 +88,5 @@ module.exports = function(app) {
   app.use("/post", Authentication, postRouter);
   app.use("/videoAPI", Authentication, videoAPIRouter);
   app.use('/merchant', Authentication, merchantRouter);
-<<<<<<< HEAD
-=======
 
->>>>>>> dddd6949fca3777115e95ad304e7b2bfb2d29791
 };
