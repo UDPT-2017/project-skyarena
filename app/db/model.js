@@ -5,6 +5,8 @@ const Message = require('../models/Message');
 const MessageStatus = require('../models/MessageStatus');
 const Premium = require('../models/Premium');
 const Post = require('../models/Post');
+const Merchant = require('../models/Merchant');
+const Item = require('../models/Item');
 
 
 User.sync()
@@ -42,6 +44,15 @@ User.sync()
         User.hasMany(Post,{as:"post", foreignKey: "userId"});
         Post.sync();
     })
+     .then(function () {
+        Merchant.belongsTo(User,{as: "user", foreignKey: "userId"});
+        Merchant.sync();
+    })
+     .then(function () {
+        Item.belongsTo(Merchant,{as: "merchant", foreignKey: "merchnatID"});
+        Merchant.hasMany(Item,{as:"item", foreignKey: "merchantID"});
+        Item.sync();
+    })
 ;
 module.exports = {
     User,
@@ -50,5 +61,7 @@ module.exports = {
     Message,
     MessageStatus,
     Premium,
-    Post
+    Post,
+    Merchant,
+    Item
 };
