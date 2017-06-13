@@ -4,6 +4,7 @@ module.exports = {
     about: require('./aboutController'),
     friend: require('./friendController'),
     message: require('./messageController'),
-    musicBox: require('./musicBoxController'),
-    post: require('./postController')
+    video: require('./videoController'),
+    post: require('./postController'),
+    videoAPI: require('./videoAPIController')
 };

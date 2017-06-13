@@ -3,8 +3,9 @@ const dotenv = require('dotenv');
 dotenv.load();
 
 var config = {
+    devtool: 'eval-source-map',
     entry: {
-        music: __dirname +"/src/index.jsx",
+        video: __dirname +"/src/index.jsx",
         message: __dirname +"/src/index2.jsx",
         friend: __dirname +"/src/index3.jsx"
     },
@@ -15,19 +16,20 @@ var config = {
     module: {
         loaders: [
             {
-                test: /\.jsx?/,
-                loader: "babel-loader",
+                test: /\.js[x]?$/,
+                loader: 'babel-loader',
                 query: {
                     presets: ["react", "es2015", "babel-preset-stage-0"]
-                }
+                },
+                exclude: /node_modules/
+            },
+            {
+                test: /\.css$/,
+                loader: 'css-loader'
             }
-        ]
+        ],   
     },
     plugins:[
-        new webpack.DefinePlugin({
-            'process.env.SPOTIFY_BASE_URL': JSON.stringify(process.env.SPOTIFY_BASE_URL),
-            'process.env.SPOTIFY_AUTHORIZATION': JSON.stringify(process.env.SPOTIFY_AUTHORIZATION)
-        })
     ]
 };
 
