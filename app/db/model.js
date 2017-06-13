@@ -8,9 +8,11 @@ const Post = require("../models/Post");
 const Video = require("../models/Video");
 const Rating = require("../models/Rating");
 const Comment = require("../models/Comment");
+const Merchant = require("../models/Merchant");
+const Item = require("../models/Item");
 
 User.sync()
-  .then(function () {
+  .then(function() {
     Friend.belongsTo(User, {
       as: "from",
       foreignKey: "userId"
@@ -25,7 +27,7 @@ User.sync()
     });
     return MessageRoom.sync();
   })
-  .then(function () {
+  .then(function() {
     Friend.belongsTo(MessageRoom, {
       as: "messageRoom",
       foreignKey: "messageRoomId"
@@ -36,7 +38,7 @@ User.sync()
     });
     return Friend.sync();
   })
-  .then(function () {
+  .then(function() {
     Message.belongsTo(MessageRoom, {
       as: "messageRoom",
       foreignKey: "messageRoomId"
@@ -51,7 +53,7 @@ User.sync()
     });
     return Message.sync();
   })
-  .then(function () {
+  .then(function() {
     MessageStatus.belongsTo(User, {
       as: "user",
       foreignKey: "userId"
@@ -70,7 +72,7 @@ User.sync()
     });
     return MessageStatus.sync();
   })
-  .then(function () {
+  .then(function() {
     Premium.belongsTo(User, {
       as: "user",
       foreignKey: "userId"
@@ -81,7 +83,7 @@ User.sync()
     });
     return Premium.sync();
   })
-  .then(function () {
+  .then(function() {
     Post.belongsTo(User, {
       as: "user",
       foreignKey: "userId"
@@ -92,7 +94,7 @@ User.sync()
     });
     return Post.sync();
   })
-  .then(function () {
+  .then(function() {
     Video.belongsTo(User, {
       as: "user",
       foreignKey: "userId"
@@ -103,7 +105,7 @@ User.sync()
     });
     return Video.sync();
   })
-  .then(function () {
+  .then(function() {
     Rating.belongsTo(User, {
       as: "user",
       foreignKey: "userId"
@@ -113,20 +115,31 @@ User.sync()
       foreignKey: "videoId"
     });
     return Rating.sync();
-  }).then(function(){
+  })
+  .then(function() {
     Comment.belongsTo(User, {
       as: "user",
       foreignKey: "userId"
     });
-    Video.hasMany(Comment,{
+    Video.hasMany(Comment, {
       as: "comments",
       foreignKey: "videoId"
-    })
+    });
     Comment.belongsTo(Video, {
       as: "video",
       foreignKey: "videoId"
     });
+    return Comment.sync();
   })
+  .then(function() {
+    Merchant.belongsTo(User, { as: "user", foreignKey: "userId" });
+    return Merchant.sync();
+  })
+  .then(function() {
+    Item.belongsTo(Merchant, { as: "merchant", foreignKey: "merchnatID" });
+    Merchant.hasMany(Item, { as: "item", foreignKey: "merchantID" });
+    return Item.sync();
+  });
 module.exports = {
   User,
   Friend,
@@ -137,5 +150,7 @@ module.exports = {
   Post,
   Video,
   Rating,
-  Comment
+  Comment,
+  Merchant,
+  Item
 };
