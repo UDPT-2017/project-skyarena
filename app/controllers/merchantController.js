@@ -1,11 +1,29 @@
 const User = require('../db/model').User;
-const Merchnat = require('../db/model').Merchant;
+const Merchant = require('../db/model').Merchant;
 const cloudinary = require('../../config/cloudinary');
 const _ = require('lodash');
 const Premium = require('../db/model').Premium;
 
 
 var merchantController = {
+	index: function (req, res) {
+
+		Merchant.findOne({where: {userId: req.user.id}}).then(function (merchant) {
+            if (merchant) {
+            	 res.render('merchant/index', {
+            page: 'merchant',
+            host: process.env.HOST
+       		 })
+                
+            } else {
+            	res.render('merchant/register', {
+            page: "register"
+        })
+                
+            }
+        });
+   
+    },
     loadRegister: function (req, res) {
         res.render('merchant/register', {
             page: "register"
@@ -14,8 +32,8 @@ var merchantController = {
     register: function (req, res, next) {
         try {
             cloudinary.uploader.upload(req.files.avatar.path, function (result) {
-                var body = _.pick(req.body, ['name', 'stock']);
-                var merchant = Merchant.build(body);
+            
+                var merchant = Merchant.build({name: req.body.name});
                 if (!result.url) {
                     req.flash('info', 'Need an avatar');
                     res.redirect('/merchant/register');

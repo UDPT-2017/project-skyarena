@@ -6,12 +6,7 @@ const _ = require('lodash');
 
 
 var itemController = {
-	index: function (req, res) {
-        res.render('merchant/index', {
-            page: 'merchant',
-            host: process.env.HOST
-        })
-    },
+
 
     getItem: function (req, res) {
         var itemList = [];
