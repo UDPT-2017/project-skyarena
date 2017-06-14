@@ -10,10 +10,10 @@ class App extends Component {
     super(props);
   }
   componentDidMount() {
-    this.props.actions.fetchVideo("", 0);
+    this.props.actions.fetchVideo("", 12);
   }
   render() {
-    if (!this.props.state.video) {
+    if (!this.props.state.video || !this.props.state.video.lists) {
       return (
         <div>
           <div className="loader center" />
@@ -27,7 +27,7 @@ class App extends Component {
             placeholder="search ...."
             onKeyPress={e => {
               if (e.key === "Enter") {
-                this.props.actions.fetchVideo(e.target.value, 0);
+                this.props.actions.fetchVideo(e.target.value, 12);
               }
             }}
           />
@@ -47,9 +47,9 @@ class App extends Component {
               </div>
             : <button
                 onClick={() => {
-                  this.props.actions.fetchMoreVideo(
-                    this.props.state.video.page,
-                    this.props.state.video.query
+                  this.props.actions.fetchVideo(
+                    this.props.state.video.query,
+                    this.props.state.video.lists.length + 12
                   );
                 }}
                 className="btn btn-success"

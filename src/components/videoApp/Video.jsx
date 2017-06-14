@@ -15,7 +15,7 @@ class Video extends Component {
   }
   componentWillMount() {
     this.props.actions.getCurrentVideo(this.props.match.params.id);
-    this.props.actions.getComments(this.props.match.params.id);
+    this.props.actions.getComments(this.props.match.params.id, 10);
     this.props.actions.getCurrentVideoRating(this.props.match.params.id);
   }
   componentDidUpdate() {
@@ -101,29 +101,40 @@ class Video extends Component {
         <div className="description-text">
           <h4>{this.props.state.current.video.description}</h4>
         </div>
-        <div>
-          <div className="col-sm-12">
-            <div className="panel panel-white post panel-shadow">
-              <FormControl
-                componentClass="textarea"
-                placeholder="Add a comment"
-                onChange={e => {
-                  this.setState({ comment: e.target.value });
-                }}
-                value={this.state.comment}
-                onKeyPress={e => {
-                  if (e.key === "Enter") {
-                    this.props.actions.addComment(
-                      this.props.match.params.id,
-                      this.state.comment
-                    );
-                    this.setState({comment: ""});
-                  }
-                }}
-              />
+        {!this.props.state.current.waiting
+          ? <div className="col-sm-12">
+              <h1 className="center">New Comment</h1>
+              <div className="panel panel-white post panel-shadow">
+                <FormControl
+                  componentClass="textarea"
+                  placeholder="Add a comment"
+                  onChange={e => {
+                    this.setState({ comment: e.target.value });
+                  }}
+                  value={this.state.comment}
+                  onKeyPress={e => {
+                    if (e.key === "Enter") {
+                      this.props.actions.addComment(
+                        this.props.match.params.id,
+                        this.state.comment
+                      );
+                      this.setState({ comment: "" });
+                    }
+                  }}
+                />
+              </div>
             </div>
-          </div>
-        </div>
+          : <div id="circularG">
+              <div id="circularG_1" className="circularG" />
+              <div id="circularG_2" className="circularG" />
+              <div id="circularG_3" className="circularG" />
+              <div id="circularG_4" className="circularG" />
+              <div id="circularG_5" className="circularG" />
+              <div id="circularG_6" className="circularG" />
+              <div id="circularG_7" className="circularG" />
+              <div id="circularG_8" className="circularG" />
+            </div>}
+
         <div className="container">
           <div className="row">
             {this.props.state.current.comments.map((comment, key) => {
@@ -131,6 +142,37 @@ class Video extends Component {
             })}
           </div>
 
+        </div>
+        <div className="center">
+          {this.props.state.current.loading
+            ? <div id="fountainG">
+                <div id="fountainG_1" className="fountainG" />
+                <div id="fountainG_2" className="fountainG" />
+                <div id="fountainG_3" className="fountainG" />
+                <div id="fountainG_4" className="fountainG" />
+                <div id="fountainG_5" className="fountainG" />
+                <div id="fountainG_6" className="fountainG" />
+                <div id="fountainG_7" className="fountainG" />
+                <div id="fountainG_8" className="fountainG" />
+              </div>
+            : <div>
+                {this.props.state.current.count <=
+                  this.props.state.current.comments.length
+                  ? <div>
+                      no more comment
+                    </div>
+                  : <button
+                      onClick={() => {
+                        this.props.actions.getComments(
+                          this.props.match.params.id,
+                          this.props.state.current.comments.length + 10
+                        );
+                      }}
+                      className="btn btn-success"
+                    >
+                      load more comment
+                    </button>}
+              </div>}
         </div>
       </div>
     );

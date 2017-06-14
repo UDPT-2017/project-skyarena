@@ -65,6 +65,7 @@ module.exports = function(app) {
     .get("/like", controllers.videoAPI.like)
     .get("/comments", controllers.videoAPI.getComments)
     .post("/postComment", controllers.videoAPI.addComment)
+    .get("/your", controllers.videoAPI.getYourVideo)
     .get("/dislike", controllers.videoAPI.dislike);
   var postRouter = Router()
     .get("/", controllers.post.index)

@@ -7,20 +7,19 @@ const _ = require("lodash");
 
 var videoAPIController = {
   index: function(req, res) {
-    var queryObj = {};
+    var queryObj = {where: {}};
     if (req.query.query && req.query.query !== "") {
-      queryObj.where = {
-        title: {
+      queryObj.where.title = {
           $like: req.query.query
-        }
       };
     }
+    if(req.query.userId === "true"){
+      queryObj.where.userId = req.user.id;
+    }
     Video.findAndCount(queryObj).then(function(result) {
-      queryObj.limit = 8;
-      if (req.query.page) {
-        queryObj.offset = req.query.page * 8;
+      if (req.query.limit) {
+        queryObj.limit = req.query.limit;
       }
-      console.log(queryObj);
       Video.findAll(queryObj).then(function(lists) {
         res.send({
           count: result.count,
@@ -321,29 +320,47 @@ var videoAPIController = {
         });
         return;
       }
+      if (!req.query.limit) {
+        res.status(404).send({
+          success: false,
+          message: "Need a limit"
+        });
+        return;
+      }
       Comment.findAll({
         where: {
           videoId: parseInt(req.query.id)
-        },
-        include: [
-          {
-            model: User,
-            as: "user"
-          }
-        ]
-      }).then(function(comments) {
-        if (comments === "") {
-          res.send({
-            success: true,
-            comments: []
-          });
-        } else {
-          comments.reverse();
-          res.send({
-            success: true,
-            comments
-          });
         }
+      }).then(comments => {
+        count = comments.length;
+
+        Comment.findAll({
+          where: {
+            videoId: parseInt(req.query.id)
+          },
+          limit: req.query.limit,
+          include: [
+            {
+              model: User,
+              as: "user"
+            }
+          ]
+        }).then(function(comments) {
+          if (comments === []) {
+            res.send({
+              success: true,
+              comments: [],
+              count
+            });
+          } else {
+            comments.reverse();
+            res.send({
+              success: true,
+              comments,
+              count
+            });
+          }
+        });
       });
     } catch (err) {
       res.status(500).send({
@@ -395,7 +412,8 @@ var videoAPIController = {
         message: err.message
       });
     }
-  }
+  },
+  getYourVideo: function(req, res) {}
 };
 
 module.exports = videoAPIController;

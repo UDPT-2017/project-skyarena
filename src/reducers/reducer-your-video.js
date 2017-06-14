@@ -1,7 +1,13 @@
 var $ = require("jquery");
 
 export default function(
-  state = { waiting: false, upload: false, successReset: false, videos: [], response: null },
+  state = {
+    waiting: false,
+    upload: false,
+    successReset: false,
+    lists: [],
+    response: null
+  },
   action
 ) {
   switch (action.type) {
@@ -26,6 +32,16 @@ export default function(
     case "SUCCESS_RESET":
       var obj = $.extend(true, {}, state);
       obj.successReset = false;
+      return obj;
+    case "WAITING_YOUR_VIDEO":
+      var obj = $.extend(true, {}, state);
+      obj.loading = true;
+      return obj;
+    case "GET_YOUR_VIDEO":
+      var obj = $.extend(true, {}, state);
+      obj.loading = false;
+      obj.lists = action.payload.lists;
+      obj.count = action.payload.count;
       return obj;
   }
   return state;

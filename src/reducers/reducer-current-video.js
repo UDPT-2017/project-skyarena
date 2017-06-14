@@ -4,6 +4,7 @@ export default function(state = null, action) {
       var obj = $.extend(true, {}, state);
       obj.success = action.payload.success;
       obj.video = action.payload.video;
+      obj.waiting = false;
       return obj;
     case "CURRENT_VIDEO_FAIL":
       var obj = $.extend(true, {}, state);
@@ -44,9 +45,15 @@ export default function(state = null, action) {
       obj.like = false;
       obj.dislike = true;
       return obj;
+    case "WAIT_LOADING_COMMENT":
+      var obj = $.extend(true, {}, state);
+      obj.loading= true;
+      return obj;
     case "GET_COMMENT":
       var obj = $.extend(true, {}, state);
-      obj.comments = action.payload;
+      obj.comments = action.payload.comments;
+      obj.count = action.payload.count;
+      obj.loading= false;
       return obj;
     case "WAITING_COMMENT":
       var obj = $.extend(true, {}, state);

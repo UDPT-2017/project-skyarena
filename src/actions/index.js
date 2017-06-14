@@ -152,6 +152,7 @@ export const fetchFriend = (page, query) => {
       });
   };
 };
+
 export const successReset = () => {
   return function(dispatch) {
     dispatch({
@@ -159,27 +160,15 @@ export const successReset = () => {
     });
   };
 };
-export const fetchVideo = query => {
-  return function(dispatch) {
-    axios.get(`/videoAPI/?query=${query}`).then(response => {
-      dispatch({
-        type: "GET_VIDEO",
-        payload: { data: response.data, query }
-      });
-    });
-  };
-};
-export const fetchMoreVideo = (page, query) => {
-  page++;
+export const fetchVideo = (query, limit) => {
   return function(dispatch) {
     dispatch({
       type: "WAITING_MORE_VIDEO"
     });
-    axios.get(`/videoAPI/?page=${page}&query=${query}`).then(response => {
-      console.log(response);
+    axios.get(`/videoAPI/?query=${query}&limit=${limit}`).then(response => {
       dispatch({
-        type: "GET_MORE_VIDEO",
-        payload: response.data
+        type: "GET_VIDEO",
+        payload: { data: response.data, query }
       });
     });
   };
@@ -195,6 +184,19 @@ export const closeUploader = () => {
   return function(dispatch) {
     dispatch({
       type: "CLOSE_UPLOADER"
+    });
+  };
+};
+export const loadYourVideo = (limit) => {
+  return function(dispatch) {
+    dispatch({
+      type: "WAITING_YOUR_VIDEO"
+    });
+    axios.get(`/videoAPI/?userId=true&limit=${limit}`).then(response => {
+      dispatch({
+        type: "GET_YOUR_VIDEO",
+        payload: response.data 
+      });
     });
   };
 };
@@ -238,14 +240,16 @@ export const getCurrentVideo = id => {
     });
   };
 };
-export const getComments = id => {
-  console.log("hello");
+export const getComments = (id, limit) => {
   return function(dispatch) {
-    axios.get("/videoAPI/comments?id=" + id).then(function(res) {
+    dispatch({
+      type: "WAIT_LOADING_COMMENT"
+    })
+    axios.get(`/videoAPI/comments?limit=${limit}&id=${id}`).then(function(res) {
       if (res.data.success) {
         dispatch({
           type: "GET_COMMENT",
-          payload: res.data.comments
+          payload: { comments: res.data.comments, count: res.data.count}
         });
       } else {
         console.log(res.data.message);

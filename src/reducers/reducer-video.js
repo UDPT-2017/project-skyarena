@@ -5,17 +5,13 @@ export default function(state = null, action) {
         lists: action.payload.data.lists,
         count: action.payload.data.count,
         page: 0,
-        query:  action.payload.query
+        query: action.payload.query,
+        waiting: false
       };
     case "WAITING_MORE_VIDEO":
       var obj = $.extend(true, {}, state);
-      obj.page ++;
+      obj.page++;
       obj.waiting = true;
-      return obj;
-    case "GET_MORE_VIDEO":
-      var obj = $.extend(true, {}, state);
-      obj.lists = obj.lists.concat(action.payload.lists);
-      obj.waiting = false;
       return obj;
   }
   return state;
