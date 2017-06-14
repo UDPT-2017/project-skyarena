@@ -3,7 +3,6 @@ const dotenv = require('dotenv');
 dotenv.load();
 
 var config = {
-    devtool: 'eval-source-map',
     entry: {
         video: __dirname +"/src/index.jsx",
         message: __dirname +"/src/index2.jsx",
