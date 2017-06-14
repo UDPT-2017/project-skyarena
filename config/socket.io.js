@@ -54,7 +54,8 @@ module.exports = function (server) {
                         avatar: data.avatar,
                         createdAt: message.createdAt,
                         text: message.text,
-                        id: data.id
+                        id: data.id,
+                        fromUserId: parseInt(data.userId)
                     });
                     socket.broadcast.to(data.id.toString()).emit("CREATED_MESSAGE_STATUS")
                 })

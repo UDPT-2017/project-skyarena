@@ -5,7 +5,6 @@ export default function (state = null, action) {
 
             return action.payload.data;
 
-            break;
         case 'NEW_MESSAGE':
             var newstate = Object.assign({}, state);
             newstate.messages.push({
@@ -13,11 +12,11 @@ export default function (state = null, action) {
                 text: action.payload.text,
                 user: {
                     name: action.payload.name,
-                    avatar: action.payload.avatar
+                    avatar: action.payload.avatar,
+                    id: action.payload.fromUserId
                 }
             });
             return newstate;
-            break;
         case 'CLOSE_CHAT_POP_UP':
             return null;
         default:

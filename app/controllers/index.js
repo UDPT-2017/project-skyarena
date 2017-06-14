@@ -4,7 +4,6 @@ module.exports = {
     about: require('./aboutController'),
     friend: require('./friendController'),
     message: require('./messageController'),
-    //musicBox: require('./musicBoxController'),
     merchant: require('./merchantController'),
     item: require('./itemController'),
     video: require('./videoController'),
