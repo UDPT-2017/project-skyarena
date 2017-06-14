@@ -10,7 +10,7 @@ const Rating = require("../models/Rating");
 const Comment = require("../models/Comment");
 const Merchant = require("../models/Merchant");
 const Item = require("../models/Item");
-User.sync()
+User.sync({force: true})
   .then(function() {
     Friend.belongsTo(User, {
       as: "from",
