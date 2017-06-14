@@ -22,6 +22,24 @@ var postController = {
             res.redirect('/post/new');
           })
     },
+    getPost: function (req, res) {
+        var postList = [];
+        var offset = req.query.page ;
+        var query = req.query.query;
+        Post.findAll({
+            where: {
+                postId: req.post.id
+            }
+        }).then(function (posts) {
+            posts.forEach(function (post) {
+              postList.push({
+                  id: post.id,
+                  title: post.title,
+                  content: post.content
+              });
+            });
+        });
+    }
 
 };
 
