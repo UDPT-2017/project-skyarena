@@ -10,140 +10,7 @@ const Rating = require("../models/Rating");
 const Comment = require("../models/Comment");
 const Merchant = require("../models/Merchant");
 const Item = require("../models/Item");
-User.sync({force: true})
-  .then(function() {
-    Friend.belongsTo(User, {
-      as: "from",
-      foreignKey: "userId"
-    });
-    Friend.belongsTo(User, {
-      as: "to",
-      foreignKey: "toUserId"
-    });
-    User.hasMany(Friend, {
-      as: "friends",
-      foreignKey: "userId"
-    });
-    return MessageRoom.sync({force: true});
-  })
-  .then(function() {
-    Friend.belongsTo(MessageRoom, {
-      as: "messageRoom",
-      foreignKey: "messageRoomId"
-    });
-    MessageRoom.hasMany(Friend, {
-      as: "friends",
-      foreignKey: "messageRoomId"
-    });
-    return Friend.sync({force: true});
-  })
-  .then(function() {
-    Message.belongsTo(MessageRoom, {
-      as: "messageRoom",
-      foreignKey: "messageRoomId"
-    });
-    MessageRoom.hasMany(Message, {
-      as: "messages",
-      foreignKey: "messageRoomId"
-    });
-    Message.belongsTo(User, {
-      as: "user",
-      foreignKey: "userId"
-    });
-    return Message.sync({force: true});
-  })
-  .then(function() {
-    MessageStatus.belongsTo(User, {
-      as: "user",
-      foreignKey: "userId"
-    });
-    User.hasMany(MessageStatus, {
-      as: "messageStatuses",
-      foreignKey: "userId"
-    });
-    MessageStatus.belongsTo(User, {
-      as: "from",
-      foreignKey: "fromUserId"
-    });
-    MessageStatus.belongsTo(MessageRoom, {
-      as: "in",
-      foreignKey: "inMessageRoomId"
-    });
-    return MessageStatus.sync({force: true});
-  })
-  .then(function() {
-    Premium.belongsTo(User, {
-      as: "user",
-      foreignKey: "userId"
-    });
-    User.hasMany(Premium, {
-      as: "premiumNotifications",
-      foreignKey: "userId"
-    });
-    return Premium.sync({force: true});
-  })
-  .then(function() {
-    Post.belongsTo(User, {
-      as: "user",
-      foreignKey: "userId"
-    });
-    User.hasMany(Post, {
-      as: "posts",
-      foreignKey: "userId"
-    });
-    return Post.sync({force: true});
-  })
-  .then(function() {
-    Video.belongsTo(User, {
-      as: "user",
-      foreignKey: "userId"
-    });
-    User.hasMany(Video, {
-      as: "videos",
-      foreignKey: "userId"
-    });
-    return Video.sync({force: true});
-  })
-  .then(function() {
-    Rating.belongsTo(User, {
-      as: "user",
-      foreignKey: "userId"
-    });
-    Rating.belongsTo(Video, {
-      as: "video",
-      foreignKey: "videoId"
-    });
-    return Rating.sync({force: true});
-  })
-  .then(function() {
-    Comment.belongsTo(User, {
-      as: "user",
-      foreignKey: "userId"
-    });
-    Video.hasMany(Comment, {
-      as: "comments",
-      foreignKey: "videoId"
-    });
-    Comment.belongsTo(Video, {
-      as: "video",
-      foreignKey: "videoId"
-    });
-    return Comment.sync({force: true});
-  })
-  .then(function() {
-    Merchant.belongsTo(User, { as: "user", foreignKey: "userId" });
-    return Merchant.sync({force: true});
-  })
-  .then(function() {
-    Item.belongsTo(Merchant, { as: "merchant", foreignKey: "merchnatID" });
-    Merchant.hasMany(Item, { as: "item", foreignKey: "merchantID" });
-    return Item.sync({force: true});
-  });
-
-
-
-
-// User.sync()
+// User.sync({force: true})
 //   .then(function() {
 //     Friend.belongsTo(User, {
 //       as: "from",
@@ -157,7 +24,7 @@ User.sync({force: true})
 //       as: "friends",
 //       foreignKey: "userId"
 //     });
-//     return MessageRoom.sync();
+//     return MessageRoom.sync({force: true});
 //   })
 //   .then(function() {
 //     Friend.belongsTo(MessageRoom, {
@@ -168,7 +35,7 @@ User.sync({force: true})
 //       as: "friends",
 //       foreignKey: "messageRoomId"
 //     });
-//     return Friend.sync();
+//     return Friend.sync({force: true});
 //   })
 //   .then(function() {
 //     Message.belongsTo(MessageRoom, {
@@ -183,7 +50,7 @@ User.sync({force: true})
 //       as: "user",
 //       foreignKey: "userId"
 //     });
-//     return Message.sync();
+//     return Message.sync({force: true});
 //   })
 //   .then(function() {
 //     MessageStatus.belongsTo(User, {
@@ -202,7 +69,7 @@ User.sync({force: true})
 //       as: "in",
 //       foreignKey: "inMessageRoomId"
 //     });
-//     return MessageStatus.sync();
+//     return MessageStatus.sync({force: true});
 //   })
 //   .then(function() {
 //     Premium.belongsTo(User, {
@@ -213,7 +80,7 @@ User.sync({force: true})
 //       as: "premiumNotifications",
 //       foreignKey: "userId"
 //     });
-//     return Premium.sync();
+//     return Premium.sync({force: true});
 //   })
 //   .then(function() {
 //     Post.belongsTo(User, {
@@ -224,7 +91,7 @@ User.sync({force: true})
 //       as: "posts",
 //       foreignKey: "userId"
 //     });
-//     return Post.sync();
+//     return Post.sync({force: true});
 //   })
 //   .then(function() {
 //     Video.belongsTo(User, {
@@ -235,7 +102,7 @@ User.sync({force: true})
 //       as: "videos",
 //       foreignKey: "userId"
 //     });
-//     return Video.sync();
+//     return Video.sync({force: true});
 //   })
 //   .then(function() {
 //     Rating.belongsTo(User, {
@@ -246,7 +113,7 @@ User.sync({force: true})
 //       as: "video",
 //       foreignKey: "videoId"
 //     });
-//     return Rating.sync();
+//     return Rating.sync({force: true});
 //   })
 //   .then(function() {
 //     Comment.belongsTo(User, {
@@ -261,17 +128,150 @@ User.sync({force: true})
 //       as: "video",
 //       foreignKey: "videoId"
 //     });
-//     return Comment.sync();
+//     return Comment.sync({force: true});
 //   })
 //   .then(function() {
 //     Merchant.belongsTo(User, { as: "user", foreignKey: "userId" });
-//     return Merchant.sync();
+//     return Merchant.sync({force: true});
 //   })
 //   .then(function() {
 //     Item.belongsTo(Merchant, { as: "merchant", foreignKey: "merchnatID" });
 //     Merchant.hasMany(Item, { as: "item", foreignKey: "merchantID" });
-//     return Item.sync();
+//     return Item.sync({force: true});
 //   });
+
+
+
+
+User.sync()
+  .then(function() {
+    Friend.belongsTo(User, {
+      as: "from",
+      foreignKey: "userId"
+    });
+    Friend.belongsTo(User, {
+      as: "to",
+      foreignKey: "toUserId"
+    });
+    User.hasMany(Friend, {
+      as: "friends",
+      foreignKey: "userId"
+    });
+    return MessageRoom.sync();
+  })
+  .then(function() {
+    Friend.belongsTo(MessageRoom, {
+      as: "messageRoom",
+      foreignKey: "messageRoomId"
+    });
+    MessageRoom.hasMany(Friend, {
+      as: "friends",
+      foreignKey: "messageRoomId"
+    });
+    return Friend.sync();
+  })
+  .then(function() {
+    Message.belongsTo(MessageRoom, {
+      as: "messageRoom",
+      foreignKey: "messageRoomId"
+    });
+    MessageRoom.hasMany(Message, {
+      as: "messages",
+      foreignKey: "messageRoomId"
+    });
+    Message.belongsTo(User, {
+      as: "user",
+      foreignKey: "userId"
+    });
+    return Message.sync();
+  })
+  .then(function() {
+    MessageStatus.belongsTo(User, {
+      as: "user",
+      foreignKey: "userId"
+    });
+    User.hasMany(MessageStatus, {
+      as: "messageStatuses",
+      foreignKey: "userId"
+    });
+    MessageStatus.belongsTo(User, {
+      as: "from",
+      foreignKey: "fromUserId"
+    });
+    MessageStatus.belongsTo(MessageRoom, {
+      as: "in",
+      foreignKey: "inMessageRoomId"
+    });
+    return MessageStatus.sync();
+  })
+  .then(function() {
+    Premium.belongsTo(User, {
+      as: "user",
+      foreignKey: "userId"
+    });
+    User.hasMany(Premium, {
+      as: "premiumNotifications",
+      foreignKey: "userId"
+    });
+    return Premium.sync();
+  })
+  .then(function() {
+    Post.belongsTo(User, {
+      as: "user",
+      foreignKey: "userId"
+    });
+    User.hasMany(Post, {
+      as: "posts",
+      foreignKey: "userId"
+    });
+    return Post.sync();
+  })
+  .then(function() {
+    Video.belongsTo(User, {
+      as: "user",
+      foreignKey: "userId"
+    });
+    User.hasMany(Video, {
+      as: "videos",
+      foreignKey: "userId"
+    });
+    return Video.sync();
+  })
+  .then(function() {
+    Rating.belongsTo(User, {
+      as: "user",
+      foreignKey: "userId"
+    });
+    Rating.belongsTo(Video, {
+      as: "video",
+      foreignKey: "videoId"
+    });
+    return Rating.sync();
+  })
+  .then(function() {
+    Comment.belongsTo(User, {
+      as: "user",
+      foreignKey: "userId"
+    });
+    Video.hasMany(Comment, {
+      as: "comments",
+      foreignKey: "videoId"
+    });
+    Comment.belongsTo(Video, {
+      as: "video",
+      foreignKey: "videoId"
+    });
+    return Comment.sync();
+  })
+  .then(function() {
+    Merchant.belongsTo(User, { as: "user", foreignKey: "userId" });
+    return Merchant.sync();
+  })
+  .then(function() {
+    Item.belongsTo(Merchant, { as: "merchant", foreignKey: "merchnatID" });
+    Merchant.hasMany(Item, { as: "item", foreignKey: "merchantID" });
+    return Item.sync();
+  });
 module.exports = {
   User,
   Friend,
