@@ -59,20 +59,22 @@ export const removeFriend = (id, page, query) => {
       type: "WAITING_FRIEND"
     });
     axios.get("/friend/remove?id=" + id.toString()).then(function(res) {
-      axios.get("/friend/get?page=" + page.toString()).then(response => {
-        axios.get("/friend/count").then(response2 => {
-          dispatch({
-            type: "GET_FRIEND",
-            payload: {
-              friends: response.data,
-              count: parseInt(response2.data.count),
-              page,
-              query,
-              waiting: false
-            }
+      axios
+        .get("/friend/get?page=" + page.toString() + "&query=" + query)
+        .then(response => {
+          axios.get("/friend/count?query=" + query).then(response2 => {
+            dispatch({
+              type: "GET_FRIEND",
+              payload: {
+                friends: response.data,
+                count: parseInt(response2.data.count),
+                page,
+                query,
+                waiting: false
+              }
+            });
           });
         });
-      });
     });
   };
 };
@@ -82,20 +84,22 @@ export const addFriend = (id, page, query) => {
       type: "WAITING_FRIEND"
     });
     axios.get("/friend/add?id=" + id.toString()).then(function(res) {
-      axios.get("/friend/get?page=" + page.toString()).then(response => {
-        axios.get("/friend/count").then(response2 => {
-          dispatch({
-            type: "GET_FRIEND",
-            payload: {
-              friends: response.data,
-              count: parseInt(response2.data.count),
-              page,
-              query,
-              waiting: false
-            }
+      axios
+        .get("/friend/get?page=" + page.toString() + "&query=" + query)
+        .then(response => {
+          axios.get("/friend/count?query=" + query).then(response2 => {
+            dispatch({
+              type: "GET_FRIEND",
+              payload: {
+                friends: response.data,
+                count: parseInt(response2.data.count),
+                page,
+                query,
+                waiting: false
+              }
+            });
           });
         });
-      });
     });
   };
 };
@@ -105,20 +109,22 @@ export const acceptFriend = (id, page, query) => {
       type: "WAITING_FRIEND"
     });
     axios.get("/friend/accept?id=" + id.toString()).then(function(res) {
-      axios.get("/friend/get?page=" + page.toString()).then(response => {
-        axios.get("/friend/count").then(response2 => {
-          dispatch({
-            type: "GET_FRIEND",
-            payload: {
-              friends: response.data,
-              count: parseInt(response2.data.count),
-              page,
-              query,
-              waiting: false
-            }
+      axios
+        .get("/friend/get?page=" + page.toString() + "&query=" + query)
+        .then(response => {
+          axios.get("/friend/count?query=" + query).then(response2 => {
+            dispatch({
+              type: "GET_FRIEND",
+              payload: {
+                friends: response.data,
+                count: parseInt(response2.data.count),
+                page,
+                query,
+                waiting: false
+              }
+            });
           });
         });
-      });
     });
   };
 };

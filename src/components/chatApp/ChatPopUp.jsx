@@ -64,9 +64,12 @@ class ChatPopUp extends Component {
                     <div className="popup-messages" id="messagesInsert">
                         {
                             data.messages.map((message, id) => {
+                                var currentUser;
+                                if(data.session.id === message.user.id) currentUser = true;
+                                else currentUser = false
                                 return (
-                                    <div key={id}>
-                                        <ChatMessage message={message} key={id}/>
+                                    <div key={id }> 
+                                        <ChatMessage currentUser={currentUser} message={message} key={id}/>
                                     </div>
 
                                 )

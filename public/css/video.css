@@ -520,12 +520,7 @@ body {
   color: #fff;
 }
 
-.right {
-  float: right;
-}
-.left {
-  float: left;
-}
+
 .uploader {
   font-size: 1.5em;
 }
