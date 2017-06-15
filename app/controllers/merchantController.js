@@ -16,8 +16,9 @@ var merchantController = {
        		 })
                 
             } else {
-            	res.render('merchant/register', {
-            page: "register"
+            	res.render('merchant/nomer', {
+            page: "Warning",
+            host: process.env.HOST
         })
                 
             }

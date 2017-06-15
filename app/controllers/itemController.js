@@ -18,7 +18,7 @@ var itemController = {
         var query = req.query.query;
         Item.findAll({
             where: {
-                userID: req.query.id,
+                userId: req.query.id,
                 check: true
             }
         }).then(function (items) {
@@ -31,6 +31,7 @@ var itemController = {
      
                     });
             });
+            console.log(itemList);
              res.send(itemList);
         });
 
@@ -50,6 +51,7 @@ var itemController = {
                 }
                 item.avatar = result.url;
                 item.userId = req.user.id;
+                console.log(req.user.id);
                	
                 item.validate();
                 item.save().then(function () {
