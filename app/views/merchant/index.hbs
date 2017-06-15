@@ -1,4 +1,49 @@
 My Shop
 
+<a href="/merchant/add">add item</a></li>
 
-<
+<div class="col-md-offset-3 col-md-4">
+    <h2>All item </h2>
+</div>
+<div class="col-md-12" id="itemList">
+</div>
+<script src="/js/friend.js">
+
+</script>
+<script>
+    function RemoveFriend(itemId) {
+        $.ajax({
+            url:  '{{host}}' + '/merchant/remove?id='+itemId,
+            dataType: "json",
+            cache: false,
+            async: false,
+            success: function (success) {
+                if(success){
+                    GetItem()
+                }
+            }
+        });
+    }
+ 
+    function GetItem() {
+        Check = 'R';
+        var $itemList = $('#itemList');
+        $itemList.empty();
+        $.ajax({
+            url: '{{host}}' + '/merchant/get',
+            dataType: "json",
+            cache: false,
+            async: false,
+            success: function (items) {
+                $.each(friends, function (i, item) {
+                    var a;
+          
+                        a = `<div class="col-sm-4 friend-block"><img src="${item.avatar}" class="small-avatar"><label >  ${item.name}  </label><button type="submit" class="btn btn-danger" style="margin-left: 20px " onclick="RemoveItem(${item.id})">Remove</button> </div>`
+                   
+                    }
+                    $itemList.append(a);
+                })
+            }
+        });
+    }
+</script>

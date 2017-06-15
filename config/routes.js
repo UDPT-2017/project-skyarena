@@ -77,7 +77,7 @@ module.exports = function(app) {
         .get('/', controllers.merchant.index)
         .get('/get', controllers.item.getItem)
         .post('/add',multipartMiddleware, controllers.item.addItem)
-        .get('/remove', controllers.item.removeItem);
+        .get('/remove', controllers.item.removeItem)
         .get('/add', controllers.item.loadAdd)
 
 
