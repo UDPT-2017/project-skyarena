@@ -6,7 +6,11 @@ const _ = require('lodash');
 
 
 var itemController = {
-
+	loadAdd: function (req, res) {
+        res.render('merchant/add', {
+            page: "addItem"
+        })
+    },
 
     getItem: function (req, res) {
         var itemList = [];
