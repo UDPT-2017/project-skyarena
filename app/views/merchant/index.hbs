@@ -35,7 +35,7 @@ My Shop
             cache: false,
             async: false,
             success: function (items) {
-                $.each(friends, function (i, item) {
+                $.each(items, function (i, item) {
                     var a;
           
                         a = `<div class="col-sm-4 friend-block"><img src="${item.avatar}" class="small-avatar"><label >  ${item.name}  </label><button type="submit" class="btn btn-danger" style="margin-left: 20px " onclick="RemoveItem(${item.id})">Remove</button> </div>`

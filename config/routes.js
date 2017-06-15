@@ -72,7 +72,7 @@ module.exports = function(app) {
     .get("/new", controllers.post.loadPost)
     .post("/new", controllers.post.createPost);
   var merchantRouter = Router()
-       // .get('/register', controllers.merchant.loadRegister)
+       .get('/register', controllers.merchant.loadRegister)
         .post('/register', multipartMiddleware, controllers.merchant.register)
         .get('/', controllers.merchant.index)
         .get('/get', controllers.item.getItem)
