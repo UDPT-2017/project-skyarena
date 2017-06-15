@@ -18,7 +18,7 @@ var itemController = {
         var query = req.query.query;
         Item.findAll({
             where: {
-                merchantId: req.query.id,
+                userID: req.query.id,
                 check: true
             }
         }).then(function (items) {
@@ -49,10 +49,10 @@ var itemController = {
                     return;
                 }
                 item.avatar = result.url;
-                item.merchantId = req.query.id;
+                item.userId = req.user.id;
                	
                 item.validate();
-                merchant.save().then(function () {
+                item.save().then(function () {
                     req.flash('info', 'New shop added');
                     res.render('merchant/index', {
             				page: "index"
