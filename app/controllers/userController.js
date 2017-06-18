@@ -221,7 +221,7 @@ var userController = {
     premium.save().then(function() {
       console.log(premium.id.toString());
       paypal.pay(
-        premium.id.toString() + "p",
+        premium.id.toString() + "a",
         10,
         "PREMIUM",
         "USD",
