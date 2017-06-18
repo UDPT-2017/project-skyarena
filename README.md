@@ -3,7 +3,7 @@
 **SkyArena** là repository cho đồ án nhóm. Nhóm tối đa 4 thành viên.
 
 Thành viên:
-* [x] **1312415** - Trần Thanh Phán - 1312415 - idkwayta@gmail.com - Tỉ lệ đóng góp cho đề tài
+* [x] **1312415** - Trần Thanh Phán - 1312415 - idkwayta@gmail.com - 1312415@github.com - Tỉ lệ đóng góp cho đề tài
 * [x] **1312340** - Lê Quốc Tấn Lộc - 1312340 - email - Tỉ lệ đóng góp cho đề tài
 * [x] **1312393** - Phùng Hải Nguyên - 1312393 - email - Tỉ lệ đóng góp cho đề tài
 
