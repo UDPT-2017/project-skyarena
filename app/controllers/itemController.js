@@ -51,21 +51,18 @@ var itemController = {
                 }
                 item.avatar = result.url;
                 item.userId = req.user.id;
-                console.log(req.user.id);
                	
                 item.validate();
                 item.save().then(function () {
-                    req.flash('info', 'New shop added');
-                    res.render('merchant/index', {
-            				page: "index"
-       					 });
+                    req.flash('info', 'New item added');
+                    res.redirect('/merchant/');
                 }).catch(function (e) {
-                    if(e.errors.length){
+                    if(e.errors){
                         for (var i = 0; i < e.errors.length; i++) {
                             req.flash('info', e.errors[i].message);
                         }
 
-                        res.redirect('/merchant/index');
+                        res.redirect('/merchant/');
                     }else{
                         next(e);
                     }
