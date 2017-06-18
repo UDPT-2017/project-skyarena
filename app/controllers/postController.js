@@ -3,17 +3,23 @@ const Post = require("../db/model").Post;
 
 var postController = {
   index: function(req, res) {
-    res.render("post", {
-      page: "post"
+    Post.findAll({}).then(function(posts) {
+      res.render("post", {
+        page: "post",
+        posts
+      });
     });
   },
   loadPost: function(req, res) {
-    res.render("post/new");
+    res.render("post/new",{
+      page: "post"
+    });
   },
   createPost: function(req, res) {
     var post = Post.build({});
     post.title = req.body.title;
     post.content = req.body.content;
+    post.userId = req.user.id;
     post
       .save()
       .then(function(post) {
@@ -26,20 +32,14 @@ var postController = {
       });
   },
   getPost: function(req, res) {
-    var postList = [];
-    var offset = req.query.page;
-    var query = req.query.query;
-    Post.findAll({
+    Post.findOne({
       where: {
-        postId: req.post.id
+        id: req.params.id
       }
-    }).then(function(posts) {
-      posts.forEach(function(post) {
-        postList.push({
-          id: post.id,
-          title: post.title,
-          content: post.content
-        });
+    }).then(function(post) {
+      res.render("post/show", {
+        page: "post",
+        post: post
       });
     });
   }
