@@ -101,8 +101,13 @@ Các **yêu cầu chức năng** (check và ghi MSSV vào các phần chức nă
 ## Demo
 Link ảnh GIF demo ứng dụng:
 ### Demo 1 (authentication, update, premium)
-![Video Walkthrough](demo.gif)
-
+![Video Walkthrough](demo1.gif)
+### Demo 2 (Friend )
+![Video Walkthrough](demo2.gif)
+### Demo 3 (Message)
+![Video Walkthrough](demo3.gif)
+### Demo 4 (Video)
+![Video Walkthrough](demo4.gif)
 Tạo ảnh GIF với chương trình [LiceCap](http://www.cockos.com/licecap/).
 
 
