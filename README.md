@@ -74,6 +74,7 @@ Liệt kê các API nhóm đã sử dụng được ở đây
 
 ## Chức năng đã thực hiện
 Các **yêu cầu chức năng** (check và ghi MSSV vào các phần chức năng đã thực hiện)
+* [x] Upload lên Heroku (1312415)
 * [x] Khi người dùng đăng nhập vào sẽ được vào các trang như friend,chat,video(1312415)
 * [x] khi người dùng đăng nhập thì trang web sẽ dùng API để lấy kinh độ và vĩ độ của người đó và dùng API để lấy thời tiết và nhiệt độ trả về giao diện (1312415)
 * [x] Thực hiện chức năng đăng nhập/đăng ký bằng email bình thường và kiểm tra kỹ các thông số tài khoản dăng nhập và cho phép người dùng nhập ảnh đại diện (1312415)
