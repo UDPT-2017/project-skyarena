@@ -1,11 +1,13 @@
-<h1> Post </h1>
+<h1> Thông Báo </h1>
 
-<a href="/post/new"><button type="button" class="btn btn-primary btn-block" style="width: 100px"> New Post </button></a>
-
-{{#each posts}}
-    <a href="/post/{{this.id}}">{{this.title}}</a>
-{{/each}}
-
+<a href="/post/new"><button type="button" class="btn btn-primary btn-block" style="width: 100px; margin-bottom: 20px"> New </button></a>
+<div class="row">
+    {{#each posts}}
+        <div class="col-sm-4" style="margin-bottom: 20px">
+          <a href="/post/{{this.id}}"><button type="button"style="min-width:20%">{{this.title}} </button></a>
+          </br>
+        </div>
+    {{/each}}
+</div>
 <script>
-
 </script>
