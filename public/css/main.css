@@ -69,8 +69,8 @@
   animation-name: bounce_circularG;
   -o-animation-name: bounce_circularG;
   -ms-animation-name: bounce_circularG;
-  -webkit-animation-name: bounce_circularG;
   -moz-animation-name: bounce_circularG;
+  -webkit-animation-name: bounce_circularG;
   animation-duration: 1.1s;
   -o-animation-duration: 1.1s;
   -ms-animation-duration: 1.1s;
@@ -396,4 +396,15 @@
 	-moz-transform:scale(.3);
 		background-color:rgb(255,255,255);
 	}
+}
+
+
+.line-separator{
+
+height:1px;
+
+background:#717171;
+
+border-bottom:1px solid #313030;
+
 }
