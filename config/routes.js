@@ -73,12 +73,13 @@ module.exports = function(app) {
     .get("/:id", controllers.post.getPost)
     .post("/new", controllers.post.createPost);
   var merchantRouter = Router()
-       // .get('/register', controllers.merchant.loadRegister)
+       .get('/register', controllers.merchant.loadRegister)
         .post('/register', multipartMiddleware, controllers.merchant.register)
         .get('/', controllers.merchant.index)
         .get('/get', controllers.item.getItem)
         .post('/add',multipartMiddleware, controllers.item.addItem)
-        .get('/remove', controllers.item.removeItem);
+        .get('/remove', controllers.item.removeItem)
+        .get('/add', controllers.item.loadAdd)
 
 
   app.use("/", indexRouter);

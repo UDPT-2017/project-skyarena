@@ -6,7 +6,11 @@ const _ = require('lodash');
 
 
 var itemController = {
-
+	loadAdd: function (req, res) {
+        res.render('merchant/add', {
+            page: "addItem"
+        })
+    },
 
     getItem: function (req, res) {
         var itemList = [];
@@ -14,7 +18,7 @@ var itemController = {
         var query = req.query.query;
         Item.findAll({
             where: {
-                merchantId: req.query.id,
+                userId: req.query.id,
                 check: true
             }
         }).then(function (items) {
@@ -27,6 +31,7 @@ var itemController = {
      
                     });
             });
+            console.log(itemList);
              res.send(itemList);
         });
 
@@ -45,10 +50,11 @@ var itemController = {
                     return;
                 }
                 item.avatar = result.url;
-                item.merchantId = req.query.id;
+                item.userId = req.user.id;
+                console.log(req.user.id);
                	
                 item.validate();
-                merchant.save().then(function () {
+                item.save().then(function () {
                     req.flash('info', 'New shop added');
                     res.render('merchant/index', {
             				page: "index"
