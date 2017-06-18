@@ -10,33 +10,34 @@
         <label for="name">Name:</label>
         <input type="text" class="form-control" id="name" name="name" value={{session.name}}>
     </div>
-    <div class="form-group">
-        <label for="pwd">New password:</label>
-        <input id="pwd" type="password" class="form-control" name="newPassword" value="">
-    </div>
-    <div class="form-group">
-        <label for="pwd">Current password:</label>
-        <input id="oldPassword1" type="password" class="form-control" name="oldPassword1">
-    </div>
-    <div class="form-group">
-        <label for="pwd">Confirm password:</label>
-        <input id="oldPassword2" type="password" class="form-control" name="oldPassword2">
-        <div id="error">
+    {{#if check }} {{else}}
+    <label for="pwd">New password:</label>
+    <input id="pwd" type="password" class="form-control" name="newPassword" value="">
+    <div id="error">
 
-        </div>
+    </div>
+    <div class="form-group">
+        <label for="pwd">Confirm new password:</label>
+        <input id="newPassword2" type="password" class="form-control" name="newPassword2">
+    </div>
+    <div class="form-group">
+        <label for="pwd">Old password:</label>
+        <input id="oldPassword" type="password" class="form-control" name="oldPassword">
+
     </div>
     <div class="form-group">
         <label for="inputAvatar">New Avatar:</label>
         <input name="avatar" type="file" id="inputAvatar">
     </div>
     <br>
-
-
     <div class="center">
         <button type="submit" class=" btn btn-info">Submit</button>
     </div>
+    {{/if}}
+
+
     <div class="form-group center">
-        <label ><h2>Premium end on:{{premium}}</h2></label> <br>
+        <label><h2>Premium end on:{{premium}}</h2></label> <br>
         <a href="/user/premium" class="btn btn-success">Add 30 days</a>
     </div>
 </form>
@@ -44,11 +45,12 @@
 <br>
 <script>
     function update() {
-        if($("#oldPassword1").val() !== $("#oldPassword2").val()){
+        if ($("#pwd").val() !== $("#newPassword2").val()) {
             $("#error").text("comfirm password and password don't match");
             console.log("ok")
             return false
         }
         return true
     }
+
 </script>

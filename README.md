@@ -3,7 +3,7 @@
 **SkyArena** là repository cho đồ án nhóm. Nhóm tối đa 4 thành viên.
 
 Thành viên:
-* [x] **1312415** - Trần Thanh Phán - 1312415 - email - Tỉ lệ đóng góp cho đề tài
+* [x] **1312415** - Trần Thanh Phán - 1312415 - idkwayta@gmail.com - Tỉ lệ đóng góp cho đề tài
 * [x] **1312340** - Lê Quốc Tấn Lộc - 1312340 - email - Tỉ lệ đóng góp cho đề tài
 * [x] **1312393** - Phùng Hải Nguyên - 1312393 - email - Tỉ lệ đóng góp cho đề tài
 
@@ -50,8 +50,7 @@ Liệt kê các API nhóm đã sử dụng được ở đây
 * [x] geoip-db API: get user longitude and latitude(1312415)
 * [x] darksky: get current weather with longitude and latitude(1312415)
 * [x] paypal: to checkout (1312415)
-* [x] SPOTIFY: get songs and artists(1312415)
-* [x] cloudinary: to upload images to cloud(1312415)
+* [x] cloudinary: to upload images and video to cloud(1312415)
 
 ## Lập trình client
 * [x] Kiểm tra dữ liệu (1312415)
@@ -63,21 +62,44 @@ Liệt kê các API nhóm đã sử dụng được ở đây
 * [x] Chứng thực (1312415)
 * [x] Phân quyền sử dụng một số trang web với nhiều vai trò khác nhau (1312415)
    * [x] Không cho phép thao tác vào trang web khi không có quyền (MSSV1)
-   * [ ] Thể hiện các chức năng khác nhau trên cùng giao diện khi người dùng có quyền khác nhau (MSSV1)
-   * [ ] Thể hiện lỗi khi không truy xuất được trang khi không có quyền (MSSV1)
+   * [x] Thể hiện các chức năng khác nhau trên cùng giao diện khi người dùng có quyền khác nhau (MSSV1)
+   * [x] Thể hiện lỗi khi không truy xuất được trang khi không có quyền (MSSV1)
 
 ## Nâng cao
-* [ ] ...
+* [x] Sử dụng kiến trúc redux cho react(1312415)
+* [x] Sử dụng cơ sở dữ liệu Redis để lưu session(1312415)
+* [x] Sử dụng webpack để biên dịch cho react(1312415)
+* [x] Sử dụng socket.io để xử lý chat thời gian thực(1312415)
+* [x] Lưu tất cả các biến hằng quan trọng bằng biến enviroment(1312415)
 
 ## Chức năng đã thực hiện
 Các **yêu cầu chức năng** (check và ghi MSSV vào các phần chức năng đã thực hiện)
-* [ ] Yêu cầu 1. (MSSV1)
+* [x] Khi người dùng đăng nhập vào sẽ được vào các trang như friend,chat,video(1312415)
+* [x] khi người dùng đăng nhập thì trang web sẽ dùng API để lấy kinh độ và vĩ độ của người đó và dùng API để lấy thời tiết và nhiệt độ trả về giao diện (1312415)
+* [x] Thực hiện chức năng đăng nhập/đăng ký bằng email bình thường và kiểm tra kỹ các thông số tài khoản dăng nhập và cho phép người dùng nhập ảnh đại diện (1312415)
+* [x] Thực hiện đăng nhập bằng facebook và google account lấy các thông số và ảnh đại diện của tài khoản đó(1312415)
+* [x] Thực hiện việc lưu session trong cơ sở dữ liệu của Redis để thuận tiện việc  phát triển ứng dụng(1312415)
+* [x] Thực hiện hash salt mật khẩu để đảm bảo việc bảo mật (1312415)
+* [x] Thực hiện việc cập nhật tài khoản đăng nhập bằng email, không cho cập nhật tài khoản đăng nhập bằng google hay facebook (1312415)
+* [x] Cho phép người dùng cập nhật tài khoản thành premium thêm 30 ngày người dùng premium sẽ được cập nhật vào và sử dụng dịch vụ upload và xem video (1312415)
+* [x] Việc cập nhật tài khoản thành premium sẽ tốn phí và trả qua dịch vụ Paypal ở chế đô sandbox (idkwayta2-buyer@gmail.com/19823764500)(1312415)
+* [x] Người dùng có thể search các người dùng khác để kết bạn  theo tên giao diện và API được thiết kế để giúp phân trang kết quả tìm được(1312415)
+* [x] Khi kết bạn với người dùng khác sẽ đưa ra yêu cầu kết bạn và người dùng kia sẽ chấp nhận yêu cầu kết bạn(1312415)
+* [x] Khi 2 người dùng đã kết bạn thì sẽ cho phép 2 người dùng chat trực tuyến(1312415)
+* [x] Khi 1 người vào trang chat sẽ hiển thị người đó online cho tất cả người dùng là bạn người đó (1312415)
+* [x] Khi 1 người dùng nhận được message trong chat mà người đó không online hay không theo dõi thì hệ thống sẽ thông báo cho người dùng đó qua giao diện (1312415)
+* [x] Trang Video sẽ không cho người dùng vào nếu như người dùng không phải là người dùng premium và cũng không cho tiếp cận API (1312415)
+* [x] Trang Video sẽ cho phép người dùng search theo tên  video và xuất ra 12 video, khi dến cuối trang sẽ cho người dùng load thêm 12 video nếu nhu còn (1312415)
+* [x] Trong Video nếu như vào mục Your video sẽ cho phép upload video (1312415)
+* [x] Nếu như upload video xảy ra lỗi thì sẽ xuất popup lỗi, nếu thành công sẽ xuất popup thành công  (1312415)
+* [x] Khi vào 1 video người dùng sẽ được phép like và dislike(1312415)
+* [x] Cho phép người dùng xuất comment(1312415)
+* [x] Tương tự khi dến cuối trang của video đó sẽ cho phép load thêm comment nếu còn(1312415)
 
 
 ## Demo
-
 Link ảnh GIF demo ứng dụng:
-
+### Demo 1 (authentication, update, premium)
 ![Video Walkthrough](demo.gif)
 
 Tạo ảnh GIF với chương trình [LiceCap](http://www.cockos.com/licecap/).
