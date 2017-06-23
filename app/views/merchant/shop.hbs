@@ -6,15 +6,10 @@ ALL shop
 </div>
 <ul >
     {{#each merchants}}
-    <li>
-        <b>
-         <div class="col-sm-4" style="margin-bottom: 20px">
-          <a href="/merchant/ {{this.id}}"><button type="button"style="min-width:20%"> {{this.name}}</button></a>
-          </br>
-        </div>
-           
-        </b>
-    </li> 
+<div style="display: inline-block;position:relative;"  class="col-md-4">
+   <a href="/merchant/{{this.id}}"> <h1 style="position:relative;z-index:2;top:0px;">{{this.name}} Shop</h1></a>
+   <a href="/merchant/{{this.id}}"> <img src="{{this.avatar}}" height="100" width="100" /></a>
+</div>
     {{/each}}
 </ul>
 
