@@ -18,6 +18,17 @@ var Item = sequelize.define('item', {
     },
       amount: {
         type: SQ.INTEGER,
+        allowNull: {
+            args: false,
+            msg: 'Must have amount '
+        }
+    },
+      price: {
+        type: SQ.INTEGER,
+        allowNull: {
+            args: false,
+            msg: 'Must have price '
+        }
     },
     avatar: {
         type: SQ.STRING,

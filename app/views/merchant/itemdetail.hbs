@@ -1,0 +1,16 @@
+<div class="center">
+<h1>{{item.name}}</h1>
+<h1>price:{{item.price}}$</h1>
+ <img src="{{item.avatar}}" height="400" width="400" />
+<div class="line-separator" style="margin-bottom: 20px"></div>
+<p>
+    {{item.description}}
+</p>
+ <button class="btn btn-success" onclick="goBack()">Go Back</button>
+
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
+</div>

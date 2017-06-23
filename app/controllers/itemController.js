@@ -13,26 +13,20 @@ var itemController = {
     },
 
     getItem: function (req, res) {
-        var itemList = [];
-        var offset = req.query.page ;
-        var query = req.query.query;
-        Item.findAll({
+        //var itemList = [];
+        //var offset = req.query.page ;
+        //var query = req.query.query;
+        Item.findOne({
             where: {
-                userId: req.query.id,
-                check: true
+                id: req.params.id
+           
             }
-        }).then(function (items) {
-            items.forEach(function (item) {
-
-            	itemList.push({
-                        id: item.id,
-                        name: item.name,
-                        avatar: item.avatar,
-     
-                    });
+        }).then(function (item) {
+  
+            	 res.render("merchant/itemdetail", {
+        page: "itemdetail",
+        item
             });
-            console.log(itemList);
-             res.send(itemList);
         });
 
     
@@ -42,7 +36,7 @@ var itemController = {
     	Merchant.findOne({ where: { userId: req.user.id } }).then(function(merchant) {
         try {
             cloudinary.uploader.upload(req.files.avatar.path, function (result) {
-                var body = _.pick(req.body, ['name', 'description','amount']);
+                var body = _.pick(req.body, ['name', 'description','amount','price']);
                 var item = Item.build(body);
                 
                 if (!result.url) {
@@ -52,7 +46,7 @@ var itemController = {
                 }
                 item.avatar = result.url;
                 item.userId = req.user.id;
-
+           
                 item.merchantId = merchant.id;
                 
 

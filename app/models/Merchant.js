@@ -16,6 +16,13 @@ var Merchant = sequelize.define('merchant', {
             msg: 'Must have an avatar'
         }
     },
+     phone: {
+        type: SQ.STRING,
+        allowNull: {
+            args: false,
+            msg: 'Must have an phone number'
+        }
+    },
      stock: {
         type: SQ.INTEGER,
     }

@@ -75,7 +75,7 @@ var merchantController = {
   register: function(req, res, next) {
     try {
       cloudinary.uploader.upload(req.files.avatar.path, function(result) {
-        var merchant = Merchant.build({ name: req.body.name });
+        var merchant = Merchant.build({ name: req.body.name,phone:req.body.phone });
         if (!result.url) {
           req.flash("info", "Need an avatar");
           res.redirect("/merchant/register");

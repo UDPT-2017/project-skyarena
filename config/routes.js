@@ -81,7 +81,8 @@ module.exports = function(app) {
     .get("/remove", controllers.item.removeItem)
     .get("/add", controllers.item.loadAdd)
     .get("/shop", controllers.merchant.getMerchant)
-    .get("/:id", controllers.merchant.showMerchant);
+    .get("/:id", controllers.merchant.showMerchant)
+    .get("/item/:id", controllers.item.getItem);
 
   app.use("/", indexRouter);
   app.use("/user", userRouter);
