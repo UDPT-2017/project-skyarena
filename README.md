@@ -21,7 +21,7 @@ Làm việc nhóm:
 * [ ] Sử dụng GIT theo Gitflow Workflow.
 
 ## Mô tả nghiệp vụ chung ứng dụng
-Trang web bán hàng với chức năng merchant! Cho phép người dùng đăng kí làm thành viên , Nếu người dùng muốn dùng chức năng của 1 merchant ( mở cửa hàng cá nhân) thì phải nạp Premium. Người dùng thường chỉ có thể mua hàng thông qua cửa hàng mà không được bán. Merchant có thể quản  lí shop của mình như thêm items, đổi nhạc nền của shop, quản lí thu nhập, xem số tiền đã bán được của shop và rút tiền trong shop về tài khoản của mình.
+Trang web bán hàng với chức năng merchant! Cho phép người dùng đăng kí làm thành viên , Nếu người dùng muốn dùng chức năng của 1 merchant ( mở cửa hàng cá nhân) thì phải nạp Premium. Người dùng thường chỉ có thể mua hàng thông qua cửa hàng mà không được bán.
 
 ## Lập trình server
 ### MVC
