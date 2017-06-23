@@ -96,7 +96,10 @@ Các **yêu cầu chức năng** (check và ghi MSSV vào các phần chức nă
 * [x] Khi vào 1 video người dùng sẽ được phép like và dislike(1312415)
 * [x] Cho phép người dùng xuất comment(1312415)
 * [x] Tương tự khi dến cuối trang của video đó sẽ cho phép load thêm comment nếu còn(1312415)
-
+* [x] Cho phép người dùng tạo shop để bán hàng thông qua My Shop(1312340)
+* [x] Khi nhấn My Shop nếu không có shop thì sẽ hỏi xem người dùng muốn tạo shop không(1312340)
+* [x] Cho phép người dùng thêm hàng để bán vào shop của mình(1312340)
+* [x] Chức năng shop area cho phép người dùng ghé thăm các shop khác và mua hàng thông qua số điện thoại hoặc nhắn tin(1312340)
 
 ## Demo
 Link ảnh GIF demo ứng dụng:
@@ -108,6 +111,8 @@ Link ảnh GIF demo ứng dụng:
 ![Video Walkthrough](demo3.gif)
 ### Demo 4 (Video)
 ![Video Walkthrough](demo4.gif)
+### Demo 5 (Shop)
+![Video Walkthrough](demo5.gif)
 Tạo ảnh GIF với chương trình [LiceCap](http://www.cockos.com/licecap/).
 
 
