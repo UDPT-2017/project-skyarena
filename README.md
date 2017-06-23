@@ -7,7 +7,7 @@ Thành viên:
 * [x] **1312340** - Lê Quốc Tấn Lộc - 1312340 - email - Tỉ lệ đóng góp cho đề tài
 * [x] **1312393** - Phùng Hải Nguyên - 1312393 - email - Tỉ lệ đóng góp cho đề tài
 
-URL: **URL hosting của đề tài**
+URL: https://shielded-ravine-69091.herokuapp.com/
 Báo cáo: **URL Github Page của đề tài**
 
 ## Yêu cầu
