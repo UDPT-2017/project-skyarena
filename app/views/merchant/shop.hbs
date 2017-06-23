@@ -1,0 +1,22 @@
+ALL shop
+
+
+<div class="center">
+    <h2>All Shop </h2>
+</div>
+<ul >
+    {{#each merchants}}
+    <li>
+        <b>
+         <div class="col-sm-4" style="margin-bottom: 20px">
+          <a href="/merchant/ {{this.id}}"><button type="button"style="min-width:20%"> {{this.name}}</button></a>
+          </br>
+        </div>
+           
+        </b>
+    </li> 
+    {{/each}}
+</ul>
+
+
+</script>

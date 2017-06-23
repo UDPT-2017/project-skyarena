@@ -79,7 +79,9 @@ module.exports = function(app) {
     .get("/get", controllers.item.getItem)
     .post("/add", multipartMiddleware, controllers.item.addItem)
     .get("/remove", controllers.item.removeItem)
-    .get("/add", controllers.item.loadAdd);
+    .get("/add", controllers.item.loadAdd)
+    .get("/shop", controllers.merchant.getMerchant)
+    .get("/:id", controllers.merchant.showMerchant);
 
   app.use("/", indexRouter);
   app.use("/user", userRouter);

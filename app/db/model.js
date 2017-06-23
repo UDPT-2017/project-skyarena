@@ -268,7 +268,7 @@ User.sync()
     return Merchant.sync();
   })
   .then(function() {
-    Item.belongsTo(Merchant, { as: "merchant", foreignKey: "merchnatId" });
+    Item.belongsTo(Merchant, { as: "merchant", foreignKey: "merchantId" });
     Item.belongsTo(User, { as: "user", foreignKey: "userId" });
     Merchant.hasMany(Item, { as: "item", foreignKey: "merchantId" });
     return Item.sync();

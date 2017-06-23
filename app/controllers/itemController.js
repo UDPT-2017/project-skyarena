@@ -1,5 +1,5 @@
 const Item = require('../db/model').Item;
-const Merchnat = require('../db/model').Merchant;
+const Merchant = require('../db/model').Merchant;
 const cloudinary = require('../../config/cloudinary');
 const _ = require('lodash');
 
@@ -39,6 +39,7 @@ var itemController = {
            
     },
     addItem: function (req, res, next) {
+    	Merchant.findOne({ where: { userId: req.user.id } }).then(function(merchant) {
         try {
             cloudinary.uploader.upload(req.files.avatar.path, function (result) {
                 var body = _.pick(req.body, ['name', 'description','amount']);
@@ -51,7 +52,12 @@ var itemController = {
                 }
                 item.avatar = result.url;
                 item.userId = req.user.id;
-               	
+
+                item.merchantId = merchant.id;
+                
+
+          
+               	console.log(merchant.id);
                 item.validate();
                 item.save().then(function () {
                     req.flash('info', 'New item added');
@@ -72,6 +78,7 @@ var itemController = {
         } catch (e) {
             next(e)
         }
+          });
 
     },
 
