@@ -1,17 +1,22 @@
-My Shop
 
-<a href="/merchant/add">add item</a></li>
-
+<div class="center">
+    <h2>My Shop </h2>
+</div>
+<div class="center">
+<a href="/merchant/add"><button type="button" class="btn btn-primary" style="width: 100px; margin-bottom: 20px"> Add New Item </button></a>
+</div>
 <div class="center">
     <h2>All item </h2>
 </div>
 <ul >
     {{#each items}}
-    <li>
-        <b>
-            {{this.name}}
-        </b>
-    </li> 
+   
+
+        <div style="display: inline-block;position:relative;"  class="col-md-4">
+    <h1 style="position:relative;z-index:2;top:0px;">{{this.name}}</h1>
+    <img src="{{this.avatar}}" height="100" width="100" />
+</div>
+    
     {{/each}}
 </ul>
 

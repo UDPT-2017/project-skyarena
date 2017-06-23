@@ -30,6 +30,48 @@ var merchantController = {
       page: "register"
     });
   },
+  getMerchant: function (req, res) {
+        var merchantList = [];
+        var offset = req.query.page ;
+        var query = req.query.query;
+        Merchant.findAll()
+        	//.then(function (merchants) {
+           // merchants.forEach(function (merchant) {
+
+            	//merchantList.push({
+                      //  id: merchant.id,
+                     //   name: merchant.name,
+                    //    avatar: merchant.avatar,
+     
+                  // });
+           // });
+       // })
+            .then(function(merchants) {
+          res.render("merchant/shop", {
+            page: "shop",
+            merchants
+          });
+        });
+           // console.log(merchantList);
+           //  res.send(merchantList);       
+    },
+    showMerchant: function(req, res) {
+    Merchant.findOne({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(merchant) {
+    	Item.findAll({ where: { merchantId: merchant.id } }).then(function(items) {
+      res.render("merchant/merchantdetail", {
+        page: "merchantdetail",
+        merchant,
+        items
+    })
+  });
+      console.log(merchant);
+      //console.log(items);
+    });
+  },
   register: function(req, res, next) {
     try {
       cloudinary.uploader.upload(req.files.avatar.path, function(result) {

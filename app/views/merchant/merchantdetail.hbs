@@ -1,0 +1,21 @@
+
+
+
+<div class="center">
+    <h2>Welcome to   {{merchant.name}} Shop!</h2>
+     <img src="{{merchant.avatar}}" height="50" width="50" />
+</div>
+          
+</br>
+Items can be purchased:
+</br>
+<ul >
+    {{#each items}}
+     <div style="display: inline-block;position:relative;"  class="col-md-4">
+    <h1 style="position:relative;z-index:2;top:0px;">{{this.name}}</h1>
+    <img src="{{this.avatar}}" height="100" width="100" />
+    </div>
+    {{/each}}
+</ul>
+
+</script>
