@@ -101,7 +101,7 @@ Các **yêu cầu chức năng** (check và ghi MSSV vào các phần chức nă
 * [x] Khi nhấn My Shop nếu không có shop thì sẽ hỏi xem người dùng muốn tạo shop không(1312340)
 * [x] Cho phép người dùng thêm hàng để bán vào shop của mình(1312340)
 * [x] Chức năng shop area cho phép người dùng ghé thăm các shop khác và mua hàng thông qua số điện thoại hoặc nhắn tin(1312340)
-* [x] Cho phép người dùng thêm thêm câu hỏi và trả lời trong Forum(1312393)
+* [x] Cho phép người dùng thêm thêm câu hỏi và trả lời trong Forum(1312393 - 1312415)
 
 ## Demo
 Link ảnh GIF demo ứng dụng:
@@ -115,6 +115,8 @@ Link ảnh GIF demo ứng dụng:
 ![Video Walkthrough](demo4.gif)
 ### Demo 5 (Shop)
 ![Video Walkthrough](demo5.gif)
+### Demo 6(Forum)
+![Video Walkthrough](demo6.gif)
 Tạo ảnh GIF với chương trình [LiceCap](http://www.cockos.com/licecap/).
 
 
