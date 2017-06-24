@@ -62,9 +62,9 @@ Liệt kê các API nhóm đã sử dụng được ở đây
 ## Bảo mật
 * [x] Chứng thực (1312415)
 * [x] Phân quyền sử dụng một số trang web với nhiều vai trò khác nhau (1312415)
-   * [x] Không cho phép thao tác vào trang web khi không có quyền (MSSV1)
-   * [x] Thể hiện các chức năng khác nhau trên cùng giao diện khi người dùng có quyền khác nhau (MSSV1)
-   * [x] Thể hiện lỗi khi không truy xuất được trang khi không có quyền (MSSV1)
+   * [x] Không cho phép thao tác vào trang web khi không có quyền (1312415)
+   * [x] Thể hiện các chức năng khác nhau trên cùng giao diện khi người dùng có quyền khác nhau(1312415)
+   * [x] Thể hiện lỗi khi không truy xuất được trang khi không có quyền (1312415)
 
 ## Nâng cao
 * [x] Sử dụng kiến trúc redux cho react(1312415)
