@@ -70,8 +70,7 @@ Liệt kê các API nhóm đã sử dụng được ở đây
 * [x] Sử dụng kiến trúc redux cho react(1312415)
 * [x] Sử dụng cơ sở dữ liệu Redis để lưu session(1312415)
 * [x] Sử dụng webpack để biên dịch cho react(1312415)
-* [x] Sử dụng socket.io để xử lý chat thời gian thực(1312415)
-* [x] Lưu tất cả các biến hằng quan trọng bằng biến enviroment(1312415)
+* [x] Sử dụng socket.io để xử lý chat thời gian thực(https://github.com/UDPT-2017/project-skyarena/wiki/Chat)(1312415)
 
 ## Chức năng đã thực hiện
 Các **yêu cầu chức năng** (check và ghi MSSV vào các phần chức năng đã thực hiện)
