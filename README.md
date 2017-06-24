@@ -3,9 +3,9 @@
 **SkyArena** là repository cho đồ án nhóm. Nhóm tối đa 4 thành viên.
 
 Thành viên:
-* [x] **1312415** - Trần Thanh Phán - 1312415 - idkwayta@gmail.com - 1312415@github.com - Tỉ lệ đóng góp cho đề tài
-* [x] **1312340** - Lê Quốc Tấn Lộc - 1312340 - email - Tỉ lệ đóng góp cho đề tài
-* [x] **1312393** - Phùng Hải Nguyên - 1312393 - phnguyen1703@gmail.com - Tỉ lệ đóng góp cho đề tài
+* [x] **1312415** - Trần Thanh Phán - 1312415 - idkwayta@gmail.com - 1312415@github.com - 80%
+* [x] **1312340** - Lê Quốc Tấn Lộc - 1312340 - email - 10%
+* [x] **1312393** - Phùng Hải Nguyên - 1312393 - phnguyen1703@gmail.com - 10%
 
 URL: https://shielded-ravine-69091.herokuapp.com/
 Báo cáo: **URL Github Page của đề tài**
@@ -21,6 +21,7 @@ Làm việc nhóm:
 * [ ] Sử dụng GIT theo Gitflow Workflow.
 
 ## Mô tả nghiệp vụ chung ứng dụng
+Trang web cho phép người dùng kết bạn với nhau đồng thời cho chat trực tuyến với những người bạn của mình dồng thời cho phép người dùng upload và chia sẻ các video của mình
 Trang web bán hàng với chức năng merchant! Cho phép người dùng đăng kí làm thành viên , Nếu người dùng muốn dùng chức năng của 1 merchant ( mở cửa hàng cá nhân) thì phải nạp Premium. Người dùng thường chỉ có thể mua hàng thông qua cửa hàng mà không được bán.
 
 ## Lập trình server
