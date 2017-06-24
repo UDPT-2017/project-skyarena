@@ -5,7 +5,7 @@
 Thành viên:
 * [x] **1312415** - Trần Thanh Phán - 1312415 - idkwayta@gmail.com - 1312415@github.com - Tỉ lệ đóng góp cho đề tài
 * [x] **1312340** - Lê Quốc Tấn Lộc - 1312340 - email - Tỉ lệ đóng góp cho đề tài
-* [x] **1312393** - Phùng Hải Nguyên - 1312393 - email - Tỉ lệ đóng góp cho đề tài
+* [x] **1312393** - Phùng Hải Nguyên - 1312393 - phnguyen1703@gmail.com - Tỉ lệ đóng góp cho đề tài
 
 URL: https://shielded-ravine-69091.herokuapp.com/
 Báo cáo: **URL Github Page của đề tài**
@@ -25,15 +25,15 @@ Trang web bán hàng với chức năng merchant! Cho phép người dùng đăn
 
 ## Lập trình server
 ### MVC
-* [x] MVC (1312415)
-* [x] Config (1312415)
-* [x] REST routing (1312415)
-* [x] Layout & partial (1312415)
+* [x] MVC (1312415-1312393-1312340)
+* [x] Config (1312415-1312393-1312340)
+* [x] REST routing (1312415-1312393-1312340)
+* [x] Layout & partial (1312415-1312393-1312340)
 
 ### Lập trình dữ liệu
-* [x] Thêm (1312415)
-* [x] Xóa (1312415)
-* [x] Sửa (1312415)
+* [x] Thêm (1312415-1312393-1312340)
+* [x] Xóa (1312415-1312393-1312340)
+* [x] Sửa (1312415-1312393-1312340)
 * [x] Tìm kiếm (1312415)
 
 ### Xử lý lỗi
@@ -100,6 +100,7 @@ Các **yêu cầu chức năng** (check và ghi MSSV vào các phần chức nă
 * [x] Khi nhấn My Shop nếu không có shop thì sẽ hỏi xem người dùng muốn tạo shop không(1312340)
 * [x] Cho phép người dùng thêm hàng để bán vào shop của mình(1312340)
 * [x] Chức năng shop area cho phép người dùng ghé thăm các shop khác và mua hàng thông qua số điện thoại hoặc nhắn tin(1312340)
+* [x] Cho phép người dùng thêm thêm câu hỏi và trả lời trong Forum(1312393)
 
 ## Demo
 Link ảnh GIF demo ứng dụng:

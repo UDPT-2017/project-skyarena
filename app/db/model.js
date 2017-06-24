@@ -10,6 +10,7 @@ const Rating = require("../models/Rating");
 const Comment = require("../models/Comment");
 const Merchant = require("../models/Merchant");
 const Item = require("../models/Item");
+const Answer = require("../models/Answer");
 // User.sync({force: true})
 //   .then(function() {
 //     Friend.belongsTo(User, {
@@ -272,6 +273,21 @@ User.sync()
     Item.belongsTo(User, { as: "user", foreignKey: "userId" });
     Merchant.hasMany(Item, { as: "item", foreignKey: "merchantId" });
     return Item.sync();
+  })
+  .then(function() {
+    Answer.belongsTo(User, {
+      as: "user",
+      foreignKey: "userId"
+    });
+    Post.hasMany(Answer, {
+      as: "answers",
+      foreignKey: "postID"
+    });
+    Answer.belongsTo(Post, {
+      as: "post",
+      foreignKey: "postID"
+    });
+    return Answer.sync();
   });
 module.exports = {
   User,
@@ -285,5 +301,6 @@ module.exports = {
   Rating,
   Comment,
   Merchant,
-  Item
+  Item,
+  Answer
 };

@@ -1,10 +1,10 @@
-<h1> Post </h1>
+<h1> Questions </h1>
 
 <a href="/post/new"><button type="button" class="btn btn-primary btn-block" style="width: 100px; margin-bottom: 20px"> New </button></a>
 <div class="row">
     {{#each posts}}
-        <div class="col-sm-4" style="margin-bottom: 20px">
-          <a href="/post/{{this.id}}"><button type="button"style="min-width:20%">{{this.title}} </button></a>
+        <div class="col-sm-8" style="margin-bottom: 20px; margin-left: 40px">
+          <a href="/post/{{this.id}}">{{this.title}}</a>
           </br>
         </div>
     {{/each}}
