@@ -1,5 +1,6 @@
 const User = require("../db/model").User;
 const Post = require("../db/model").Post;
+const Answer = require('../db/model').Answer;
 
 var postController = {
   index: function(req, res) {
@@ -35,53 +36,22 @@ var postController = {
     Post.findOne({
       where: {
         id: req.params.id
+      },
+      include: [{
+        model: Answer,
+        as: 'answers',
+        include: [{
+          model: User,
+          as: 'user'
+        }]
       }
+      ]
     }).then(function(post) {
       res.render("post/show", {
         page: "post",
         post: post
       });
     });
-  },
-  getAswers: function(req, res) {
-    try {
-      Answer.findAll({
-        where: {
-          postID: parseInt(req.query.id)
-        }
-      }).then(answer => {
-        Comment.findAll({
-          where: {
-            postID: parseInt(req.query.id)
-          },
-          include: [
-            {
-              model: User,
-              as: "user"
-            }
-          ]
-        }).then(function(answers) {
-          if (answers === []) {
-            res.send({
-              success: true,
-              comments: [],
-              count
-            });
-          } else {
-            answers.reverse();
-            res.send({
-              success: true,
-              answers
-            });
-          }
-        });
-      });
-    } catch (err) {
-      res.status(500).send({
-        success: false,
-        message: err.message
-      });
-    }
   },
   addAnswer: function(req, res) {
     try {
@@ -93,26 +63,16 @@ var postController = {
         });
         return;
       }
-      var answer = Anser.build({
+      var answer = Answer.build({
         text: req.body.text,
         userId: req.user.id,
-        postID: req.post.id
+        postID: req.params.id
       });
       answer
         .save()
         .then(function(answer) {
-          return Answer.find({
-            where: { id: answer.id },
-            include: [{ model: User, as: "user" }]
-          });
+          res.redirect(`/post/${req.params.id}`)
         })
-        .then(function(answer) {
-          res.send({
-            success: true,
-            answer: answer
-          });
-          return;
-        });
     } catch (err) {
       res.status(500).send({
         success: false,
